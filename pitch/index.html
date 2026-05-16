@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Category Winning to Drive Leads — Vailent Marketing Plan</title>
+<style>
+:root {
+  /* Vailent brand palette — matched to vailent.com (dark-mode-first, slate gray) +
+     accent colors lifted directly from logo.svg gradient. */
+  --black: #1A1A1A;        /* primary background — vailent.com renders ~#1A-1F gray, not pure black */
+  --black-elev: #232323;   /* slightly lighter for card surfaces if needed */
+  --coral: #FD6437;        /* logo gradient end stop — emphasis only */
+  --lemon: #FAEC8C;        /* logo gradient start stop — highlights only */
+  --fg: #FFFFFF;           /* primary text */
+  --fg-60: rgba(255,255,255,0.60);  /* secondary text — vailent.com pattern */
+  --fg-40: rgba(255,255,255,0.40);  /* tertiary text */
+  --fg-12: rgba(255,255,255,0.12);  /* hairline borders */
+  --fg-04: rgba(255,255,255,0.04);  /* card surfaces */
+  /* Legacy aliases so existing class names keep resolving */
+  --orange: #FD6437;
+  --gold: #FAEC8C;
+  --navy: #000000;
+  --navy-deep: #000000;
+  --char: #000000;
+  --char-deep: #000000;
+  --ink: #FFFFFF;
+  --cream: #000000;
+  --muted: rgba(255,255,255,0.60);
+  --muted-dark: rgba(255,255,255,0.60);
+  --hairline: rgba(255,255,255,0.12);
+  --hairline-dark: rgba(255,255,255,0.12);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--navy-deep);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.deck {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* hide scrollbar for cleaner presentation, retain functionality */
+.deck::-webkit-scrollbar { width: 0; background: transparent; }
+.deck { scrollbar-width: none; }
+
+section {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 96px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* THEMES — vailent.com is dark-mode-first, pure black, no gradients.
+   All slides share the same flat-black background; rhythm comes from accent
+   color usage (coral/lemon) on type elements, not from background changes. */
+.theme-navy,
+.theme-cream,
+.theme-orange,
+.theme-gold,
+.theme-navy-orange,
+.theme-navy-gold {
+  background: var(--black);
+  color: var(--fg);
+}
+
+/* TYPE */
+.eyebrow {
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: 0.7;
+  margin-bottom: clamp(16px, 3vh, 32px);
+}
+
+/* BRAND GRADIENT TEXT — lemon → coral, matches logo mark direction.
+   Logo gradient: #FAEC8C top-left → #FD6437 bottom-right. */
+.brand-gradient {
+  background-image: linear-gradient(135deg, var(--lemon) 0%, #FFB066 40%, var(--coral) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* BRAND LOGO — inline SVG, wordmark inherits currentColor */
+.brand-logo {
+  position: absolute;
+  top: clamp(20px, 3vh, 36px);
+  left: clamp(32px, 6vw, 96px);
+  display: block;
+  height: clamp(32px, 4.5vh, 48px);
+  width: auto;
+}
+.brand-logo--sm { height: clamp(26px, 3.5vh, 36px); }
+
+h1.headline {
+  font-size: clamp(3rem, 9vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  margin-bottom: clamp(20px, 3vh, 36px);
+}
+
+h2.headline-md {
+  font-size: clamp(2.2rem, 5.5vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  margin-bottom: clamp(16px, 2.5vh, 28px);
+}
+
+h3.headline-sm {
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 1.7vw, 1.55rem);
+  line-height: 1.45;
+  font-weight: 400;
+  opacity: 0.85;
+  max-width: 50ch;
+}
+
+.category-def {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1.2vw, 16px);
+  max-width: 60ch;
+  margin: 0 0 clamp(20px, 3vh, 32px);
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.5;
+  color: var(--fg-60);
+}
+.category-def .cat-pill {
+  font-size: clamp(0.65rem, 0.85vw, 0.78rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 6px 12px;
+  border: 1px solid var(--fg-12);
+  border-radius: 999px;
+  white-space: nowrap;
+  background-image: linear-gradient(90deg, var(--lemon) 0%, var(--coral) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.category-def strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.kicker {
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  line-height: 1.5;
+  opacity: 0.7;
+  max-width: 60ch;
+  margin-top: clamp(20px, 3vh, 36px);
+}
+
+.footnote {
+  position: absolute;
+  bottom: clamp(20px, 3vh, 32px);
+  left: clamp(32px, 6vw, 96px);
+  right: clamp(32px, 6vw, 96px);
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  opacity: 0.5;
+  letter-spacing: 0.02em;
+}
+
+.slide-num {
+  position: absolute;
+  top: clamp(20px, 3vh, 32px);
+  right: clamp(32px, 6vw, 96px);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  opacity: 0.4;
+  font-weight: 600;
+}
+
+/* SLIDE 1 - HERO — bottom-right bloom, kept tight to the corner so it
+   sits BEHIND the headline as accent, not behind it as a wash. */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 55% 60% at 100% 100%,
+      rgba(250,236,140,0.42) 0%,
+      rgba(253,100,55,0.55) 22%,
+      rgba(253,100,55,0.18) 50%,
+      rgba(253,100,55,0) 78%);
+  filter: blur(20px);
+}
+.hero-eyebrow {
+  background-image: linear-gradient(90deg, var(--lemon) 0%, var(--coral) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  opacity: 1;
+}
+/* SLIDE 2 - STATS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  margin: clamp(28px, 5vh, 56px) 0;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.stat-num {
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+  /* coral → lemon gradient — matches logo mark */
+  background-image: linear-gradient(135deg, var(--coral) 0%, #FF8856 45%, var(--lemon) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.stat-label {
+  font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+  line-height: 1.35;
+  opacity: 0.85;
+  border-top: 1px solid var(--hairline);
+  padding-top: 14px;
+}
+
+/* SLIDE 3 - GAPS */
+.gap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+  margin-top: clamp(28px, 4vh, 48px);
+}
+.gap-tile {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  padding: clamp(20px, 2.5vw, 32px);
+}
+.gap-tile-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.gap-tile-value {
+  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+/* SLIDE 4 - BET */
+.bet-statement {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+}
+.bet-statement em {
+  font-style: normal;
+  background-image: linear-gradient(135deg, var(--coral) 0%, #FF8856 45%, var(--lemon) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.bet-sub {
+  margin-top: clamp(28px, 4vh, 48px);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  opacity: 0.65;
+  max-width: 50ch;
+  line-height: 1.5;
+}
+
+/* SLIDE 5 - HUB */
+.hub-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+  margin-top: clamp(20px, 3vh, 36px);
+}
+.hub-center {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%);
+  color: var(--navy-deep);
+  border-radius: 24px;
+  padding: clamp(24px, 3vw, 40px);
+  position: relative;
+}
+.hub-center-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+.hub-center-name {
+  font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 22px;
+}
+.hub-center-name span {
+  display: block;
+  white-space: nowrap;
+}
+.hub-center-name span + span {
+  margin-top: 0.4em;
+}
+.hub-center-meta {
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  line-height: 1.5;
+  opacity: 0.8;
+}
+.surface-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.surface-chip {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: clamp(0.85rem, 1.05vw, 1rem);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.surface-chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+/* SLIDE 6 - DECISION FLOW */
+.flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  gap: clamp(8px, 1.4vw, 18px);
+  align-items: stretch;
+  margin: clamp(24px, 3.5vh, 40px) 0 clamp(20px, 3vh, 32px);
+}
+.flow-step {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  padding: clamp(16px, 1.8vw, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.flow-step-label {
+  font-size: clamp(0.6rem, 0.75vw, 0.7rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--lemon);
+}
+.flow-step-title {
+  font-size: clamp(1.05rem, 1.7vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+.flow-step-body {
+  font-size: clamp(0.8rem, 0.95vw, 0.95rem);
+  opacity: 0.7;
+  line-height: 1.45;
+}
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--orange);
+  font-weight: 300;
+}
+.flow-bottom {
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  line-height: 1.5;
+  max-width: 70ch;
+  opacity: 0.85;
+}
+
+/* SLIDES 7-10 - TIMELINE */
+.timeline-slide {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+.day-marker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.day-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: 0.7;
+}
+.day-num {
+  font-size: clamp(5rem, 16vw, 14rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1.0;
+  padding-bottom: 0.05em; /* breathing room so descenders don't crash into the tag below */
+  /* coral → lemon gradient — matches logo mark, unifies all four day markers */
+  background-image: linear-gradient(135deg, var(--coral) 0%, #FF8856 45%, var(--lemon) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.day-tag {
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+  font-weight: 600;
+  opacity: 0.8;
+  margin-top: clamp(16px, 2.5vh, 28px);
+  max-width: 22ch;
+  line-height: 1.3;
+}
+.deliverables {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.9vh, 10px);
+}
+.deliverables li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: clamp(0.85rem, 1.05vw, 1.05rem);
+  line-height: 1.35;
+  padding-bottom: clamp(6px, 0.9vh, 10px);
+  border-bottom: 1px solid var(--hairline);
+}
+.deliverables li:last-child { border-bottom: none; }
+.deliverables .surface-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: rgba(255,255,255,0.08);
+  color: var(--fg-60);
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 4px;
+  min-width: 90px;
+  text-align: center;
+}
+
+/* SLIDE 12 - OWNS */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(20px, 3vw, 44px);
+  margin-top: clamp(20px, 3vh, 40px);
+  align-items: start;
+}
+.split-col h4 {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: clamp(14px, 2vh, 20px);
+  padding-bottom: 10px;
+  border-bottom: 2px solid currentColor;
+  display: inline-block;
+  padding-right: 28px;
+}
+.split-col.you h4 { color: var(--lemon); }
+.split-col.mine h4 { color: var(--coral); }
+.split-col.built h4 { color: var(--fg); }
+.split-col.built li { opacity: 0.7; }
+.split-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vh, 12px);
+}
+.split-col li {
+  font-size: clamp(0.9rem, 1.05vw, 1.1rem);
+  line-height: 1.4;
+  padding-left: 18px;
+  position: relative;
+}
+.split-col li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  opacity: 0.5;
+}
+
+/* SLIDE 13 - ACTION ITEMS */
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(28px, 4vw, 56px);
+  row-gap: clamp(14px, 2vh, 22px);
+  margin: clamp(20px, 3vh, 36px) 0;
+}
+.action {
+  padding-bottom: clamp(14px, 2vh, 20px);
+  border-bottom: 1px solid var(--hairline);
+}
+.action-role {
+  font-size: clamp(1rem, 1.35vw, 1.3rem);
+  font-weight: 800;
+  color: var(--orange);
+  letter-spacing: -0.015em;
+  margin-bottom: 6px;
+}
+.action-detail {
+  font-size: clamp(0.88rem, 1.05vw, 1.05rem);
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+/* SLIDE 13 - CLOSE */
+.close-statement {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  margin-bottom: clamp(28px, 4vh, 48px);
+}
+.close-statement em {
+  font-style: normal;
+  background-image: linear-gradient(135deg, var(--coral) 0%, #FF8856 45%, var(--lemon) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.close-recap {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vh, 12px);
+  font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+  opacity: 0.85;
+  max-width: 60ch;
+}
+.close-recap li {
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.45;
+}
+.close-recap li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.close-link {
+  position: absolute;
+  bottom: clamp(20px, 3vh, 32px);
+  right: clamp(32px, 6vw, 96px);
+  font-size: clamp(0.75rem, 0.95vw, 0.9rem);
+  opacity: 0.55;
+}
+.close-link a { color: var(--gold); text-decoration: none; border-bottom: 1px solid currentColor; }
+
+/* COUNTER ANIMATION TRIGGER */
+.stat-num { opacity: 0; transform: translateY(12px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.stat-num.in { opacity: 1; transform: translateY(0); }
+
+/* SLIDE 7 — GENERATION PROOF v4
+   Apex tile (video) is the hero — meta on the right. Two smaller base tiles
+   below, each with its own meta beside it. Triangle preserved via vertical
+   stack; tile size hierarchy (apex > base) creates emphasis. */
+.proof-slide {
+  justify-content: flex-start;
+  padding-top: clamp(24px, 3.5vh, 48px);
+  padding-bottom: clamp(20px, 3vh, 40px);
+}
+.proof-header {
+  margin-bottom: clamp(20px, 3vh, 40px);
+  flex-shrink: 0;
+}
+.proof-header .headline-md {
+  font-size: clamp(1.3rem, 2.2vw, 2.4rem);
+  margin-bottom: 0;
+  line-height: 1.12;
+  max-width: 70%;
+}
+
+.proof-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: clamp(20px, 3vh, 40px);
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+.proof-row {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.proof-row--base {
+  gap: clamp(32px, 4vw, 72px);
+}
+
+/* Tile = square + meta in a horizontal row */
+.proof-tile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(16px, 2vw, 32px);
+  flex: 0 0 auto;
+  min-width: 0;
+}
+.proof-square {
+  flex: 0 0 auto;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid var(--fg-12);
+  background: rgba(255,255,255,0.025);
+  overflow: hidden;
+}
+/* Size hierarchy: apex square is significantly taller than base squares */
+.proof-row--apex .proof-square { height: clamp(240px, 44vh, 500px); }
+.proof-row--base .proof-square { height: clamp(140px, 24vh, 280px); }
+
+/* Media inside the square */
+.proof-square video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.scroll-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: translateY(0);
+}
+.proof-tile--playbook .scroll-image-y { --scroll-y: -91%; }
+.proof-tile--landing  .scroll-image-y { --scroll-y: -85%; }
+
+.proof-grid.is-active .scroll-image-y {
+  animation: scrollY 22s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes scrollY {
+  0%, 6%    { transform: translateY(0); }
+  46%, 54%  { transform: translateY(var(--scroll-y, -70%)); }
+  94%, 100% { transform: translateY(0); }
+}
+
+/* Meta beside the square */
+.proof-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+.proof-row--apex .proof-meta { width: clamp(280px, 22vw, 440px); }
+.proof-row--base .proof-meta { width: clamp(200px, 16vw, 300px); }
+
+.proof-tag {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--coral);
+}
+.proof-row--apex .proof-tag { font-size: clamp(0.7rem, 0.85vw, 0.88rem); }
+.proof-row--base .proof-tag { font-size: clamp(0.55rem, 0.68vw, 0.72rem); }
+
+.proof-desc {
+  line-height: 1.4;
+  margin: 0;
+  color: var(--fg);
+  opacity: 0.85;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.proof-row--apex .proof-desc {
+  font-size: clamp(0.95rem, 1.15vw, 1.2rem);
+  -webkit-line-clamp: 5;
+}
+.proof-row--base .proof-desc {
+  font-size: clamp(0.7rem, 0.82vw, 0.9rem);
+  -webkit-line-clamp: 3;
+}
+
+.proof-link {
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  align-self: flex-start;
+  margin-top: 6px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.proof-row--apex .proof-link { font-size: clamp(0.9rem, 1.05vw, 1.1rem); }
+.proof-row--base .proof-link { font-size: clamp(0.75rem, 0.85vw, 0.9rem); }
+.proof-link:hover { color: var(--coral); }
+
+/* SLIDE 14 — PRICING / THE MATH */
+.pricing-slide {
+  justify-content: flex-start;
+  padding-top: clamp(28px, 4vh, 56px);
+  padding-bottom: clamp(24px, 3vh, 40px);
+  position: relative;
+  overflow: hidden;
+}
+.pricing-slide::before {
+  content: "";
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, rgba(253, 100, 55, 0.18) 0%, rgba(250, 236, 140, 0.06) 35%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+.pricing-slide > *:not(.slide-num) { position: relative; z-index: 1; }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr;
+  gap: clamp(16px, 1.8vw, 28px);
+  margin-top: clamp(24px, 3.5vh, 44px);
+  align-items: stretch;
+}
+.price-card {
+  border: 1px solid var(--hairline);
+  background: var(--fg-04);
+  border-radius: 16px;
+  padding: clamp(20px, 2.2vh, 32px) clamp(18px, 2vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.4vh, 18px);
+  position: relative;
+}
+.price-card.winner {
+  border: 2px solid transparent;
+  background: linear-gradient(var(--black-elev), var(--black-elev)) padding-box,
+              linear-gradient(135deg, var(--lemon) 0%, var(--coral) 100%) border-box;
+  box-shadow: 0 0 60px rgba(253, 100, 55, 0.22), 0 0 120px rgba(250, 236, 140, 0.08);
+  transform: translateY(-12px);
+}
+.price-card.winner::after {
+  content: "Recommended";
+  position: absolute;
+  top: -14px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--lemon) 0%, var(--coral) 100%);
+  color: var(--black);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.price-tier {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--fg-60);
+}
+.price-card.winner .price-tier {
+  background-image: linear-gradient(90deg, var(--lemon) 0%, var(--coral) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.price-amount {
+  font-size: clamp(2rem, 3.6vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.price-amount-sub {
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.55;
+  margin-left: 6px;
+}
+.price-card.winner .price-amount {
+  background-image: linear-gradient(135deg, var(--coral) 0%, #FF8856 45%, var(--lemon) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.price-meta {
+  font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+  opacity: 0.6;
+  line-height: 1.4;
+  padding-bottom: clamp(10px, 1.2vh, 16px);
+  border-bottom: 1px solid var(--hairline);
+}
+.price-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(7px, 1vh, 10px);
+  flex: 1;
+}
+.price-list li {
+  font-size: clamp(0.82rem, 0.98vw, 0.98rem);
+  line-height: 1.4;
+  padding-left: 18px;
+  position: relative;
+  opacity: 0.85;
+}
+.price-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  opacity: 0.4;
+}
+.price-card.winner .price-list li::before { color: var(--coral); opacity: 0.7; }
+.price-savings {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4px;
+}
+.price-card.winner .price-savings { color: var(--coral); }
+.pricing-kicker {
+  margin-top: clamp(20px, 3vh, 36px);
+  font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+  text-align: center;
+  opacity: 0.7;
+}
+.pricing-kicker em {
+  font-style: normal;
+  background-image: linear-gradient(90deg, var(--lemon) 0%, var(--coral) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+/* MOBILE / NARROW */
+@media (max-width: 900px) {
+  section { padding: 28px 24px; height: auto; min-height: 100vh; }
+  .deck { scroll-snap-type: y proximity; }
+  .stats-grid { grid-template-columns: 1fr; gap: 32px; }
+  .gap-grid { grid-template-columns: 1fr; }
+  .hub-wrap { grid-template-columns: 1fr; }
+  .surface-grid { grid-template-columns: 1fr; }
+  .flow { grid-template-columns: 1fr; }
+  .flow-arrow { transform: rotate(90deg); padding: 4px 0; }
+  .timeline-slide { grid-template-columns: 1fr; gap: 24px; }
+  .day-num { font-size: clamp(4rem, 18vw, 8rem); }
+  .split { grid-template-columns: 1fr; }
+  .actions { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .price-card.winner { transform: none; }
+  .proof-row { flex-direction: column; align-items: center; }
+  .proof-tile { flex-direction: column; align-items: flex-start; width: 100%; max-width: 420px; }
+  .proof-row--apex .proof-meta,
+  .proof-row--base .proof-meta { width: 100%; }
+  .proof-header .headline-md { max-width: 100%; }
+}
+
+/* PRINT */
+@media print {
+  .deck { height: auto; overflow: visible; scroll-snap-type: none; }
+  section { page-break-after: always; height: 100vh; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- SLIDE 1 — HERO -->
+<section class="theme-navy-orange">
+  <div class="hero-glow"></div>
+  <svg class="brand-logo" viewBox="0 0 251 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Vailent">
+    <path d="M69 23.3885C69 29.6782 63.967 34.777 57.7585 34.777C51.5499 34.777 46.5169 29.6782 46.5169 23.3885C46.5169 17.0988 51.5499 12 57.7585 12C63.967 12 69 17.0988 69 23.3885Z" fill="url(#brandMark1)"/>
+    <path d="M22.2415 12C28.4501 12 33.4831 17.0988 33.4831 23.3885C33.4831 24.0405 33.4288 24.6796 33.3249 25.3016C31.5414 37.1393 30.2383 40.4851 44.5437 45.9823C48.9834 47.9812 51.4498 52.2896 51.4498 56.4768C51.4498 62.4737 46.5169 68.4705 38.6243 67.9708C33.1981 66.9713 29.2517 63.4731 28.7585 56.9765C28.7585 55.6443 28.9415 54.3272 29.2504 53.0313C31.9809 41.5732 29.6427 37.8139 19.0155 34.3009C14.3792 32.8963 11 28.5423 11 23.3885C11 17.0988 16.033 12 22.2415 12Z" fill="url(#brandMark2)"/>
+    <path d="M225.675 35.2676H220.523V31.0676H225.675V23.0596H230.267V31.0676H237.491V35.2676H230.267V52.1236C230.267 53.3182 230.491 54.1769 230.939 54.6996C231.425 55.1849 232.246 55.4276 233.403 55.4276H238.387V59.6276H233.123C230.435 59.6276 228.513 59.0302 227.355 57.8356C226.235 56.6409 225.675 54.7556 225.675 52.1796V35.2676Z" fill="currentColor"/>
+    <path d="M207.221 30.7314C210.693 30.7314 213.474 31.7768 215.565 33.8674C217.693 35.9581 218.757 39.2434 218.757 43.7234V59.6274H214.165V44.0034C214.165 41.0541 213.493 38.8141 212.149 37.2834C210.842 35.7154 208.938 34.9314 206.437 34.9314C203.749 34.9314 201.639 35.8648 200.109 37.7314C198.578 39.5981 197.813 42.1368 197.813 45.3474V59.6274H193.221V31.0674H197.197L197.813 34.9314C199.978 32.1314 203.114 30.7314 207.221 30.7314Z" fill="currentColor"/>
+    <path d="M161.717 45.3474C161.717 42.4354 162.277 39.8781 163.397 37.6754C164.554 35.4728 166.159 33.7741 168.213 32.5794C170.266 31.3474 172.618 30.7314 175.269 30.7314C177.882 30.7314 180.197 31.2728 182.213 32.3554C184.229 33.4381 185.815 35.0061 186.973 37.0594C188.13 39.1128 188.746 41.5208 188.821 44.2834C188.821 44.6941 188.783 45.3474 188.709 46.2434H166.533V46.6354C166.607 49.4354 167.466 51.6754 169.109 53.3554C170.751 55.0354 172.898 55.8754 175.549 55.8754C177.602 55.8754 179.338 55.3714 180.757 54.3634C182.213 53.3181 183.183 51.8808 183.669 50.0514H188.317C187.757 52.9634 186.357 55.3528 184.117 57.2194C181.877 59.0488 179.133 59.9634 175.885 59.9634C173.047 59.9634 170.565 59.3661 168.437 58.1714C166.309 56.9394 164.647 55.2221 163.453 53.0194C162.295 50.7794 161.717 48.2221 161.717 45.3474ZM184.061 42.4354C183.837 40.0088 182.922 38.1234 181.317 36.7794C179.749 35.4354 177.751 34.7634 175.325 34.7634C173.159 34.7634 171.255 35.4728 169.613 36.8914C167.97 38.3101 167.037 40.1581 166.813 42.4354H184.061Z" fill="currentColor"/>
+    <path d="M152.683 20.4277H157.275V59.6277H152.683V20.4277Z" fill="currentColor"/>
+    <path d="M144.936 20.0361C145.794 20.0361 146.504 20.3161 147.064 20.8761C147.624 21.4361 147.904 22.1455 147.904 23.0041C147.904 23.8628 147.624 24.5721 147.064 25.1321C146.504 25.6921 145.794 25.9721 144.936 25.9721C144.077 25.9721 143.368 25.6921 142.808 25.1321C142.248 24.5721 141.968 23.8628 141.968 23.0041C141.968 22.1455 142.248 21.4361 142.808 20.8761C143.368 20.3161 144.077 20.0361 144.936 20.0361ZM142.64 31.0681H147.232V59.6281H142.64V31.0681Z" fill="currentColor"/>
+    <path d="M139.95 55.4274V59.6274H137.43C135.6 59.6274 134.294 59.2541 133.51 58.5074C132.726 57.7608 132.315 56.6594 132.278 55.2034C130.075 58.3768 126.883 59.9634 122.702 59.9634C119.528 59.9634 116.971 59.2168 115.03 57.7234C113.126 56.2301 112.174 54.1954 112.174 51.6194C112.174 48.7448 113.144 46.5421 115.086 45.0114C117.064 43.4808 119.92 42.7154 123.654 42.7154H132.054V40.7554C132.054 38.8888 131.419 37.4328 130.15 36.3874C128.918 35.3421 127.182 34.8194 124.942 34.8194C122.963 34.8194 121.32 35.2674 120.014 36.1634C118.744 37.0221 117.96 38.1794 117.662 39.6354H113.07C113.406 36.8354 114.638 34.6514 116.766 33.0834C118.931 31.5154 121.731 30.7314 125.166 30.7314C128.824 30.7314 131.643 31.6274 133.622 33.4194C135.638 35.1741 136.646 37.7128 136.646 41.0354V53.3554C136.646 54.7368 137.28 55.4274 138.55 55.4274H139.95ZM132.054 46.5794H123.206C118.95 46.5794 116.822 48.1661 116.822 51.3394C116.822 52.7581 117.382 53.8968 118.502 54.7554C119.622 55.6141 121.134 56.0434 123.038 56.0434C125.838 56.0434 128.04 55.3154 129.646 53.8594C131.251 52.3661 132.054 50.4061 132.054 47.9794V46.5794Z" fill="currentColor"/>
+    <path d="M80 20.4277H85.152L97.136 53.8597L109.064 20.4277H114.104L99.992 59.6277H94.112L80 20.4277Z" fill="currentColor"/>
+    <defs>
+      <linearGradient id="brandMark1" x1="14.9658" y1="12" x2="79.3605" y2="29.1906" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FAEC8C"/>
+        <stop offset="1" stop-color="#FD6437"/>
+      </linearGradient>
+      <linearGradient id="brandMark2" x1="14.9658" y1="12" x2="79.3605" y2="29.1906" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FAEC8C"/>
+        <stop offset="1" stop-color="#FD6437"/>
+      </linearGradient>
+    </defs>
+  </svg>
+  <span class="slide-num">01 / 15</span>
+  <div class="eyebrow hero-eyebrow" style="margin-top: clamp(48px, 7vh, 80px);">Marketing Plan · 2026 Q2 / Q3</div>
+  <h1 class="headline">Category Winning<br>to Drive Leads.</h1>
+  <p class="category-def">
+    <span class="cat-pill">The Category</span>
+    <span><strong>Material Operations AI</strong> — the operating layer for how material companies quote, qualify, and close.</span>
+  </p>
+</section>
+
+<!-- SLIDE 2 — THE WINDOW -->
+<section class="theme-navy">
+  <span class="slide-num">02 / 15</span>
+  <div class="eyebrow" style="color: var(--gold);">The Window</div>
+  <h2 class="headline-md">The category is unclaimed.<br>We have a six-month head start.</h2>
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-num" data-count="63" data-suffix="%">63%</div>
+      <div class="stat-label">of chemical and materials companies <strong>intend</strong> to adopt AI.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" data-count="14" data-suffix="%">14%</div>
+      <div class="stat-label">have actually <strong>started</strong>.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" data-count="0" data-suffix="">0</div>
+      <div class="stat-label">competitors are running paid LinkedIn campaigns in this category right now.</div>
+    </div>
+  </div>
+  <div class="footnote">Sources: IBM, <em>Chemicals in the AI era</em> (2024). Internal competitive scan, May 2026.</div>
+</section>
+
+<!-- SLIDE 3 — THE GAPS -->
+<section class="theme-navy">
+  <span class="slide-num">03 / 15</span>
+  <div class="eyebrow" style="color: var(--gold);">The Gaps</div>
+  <h2 class="headline-md">Four open lanes.<br>Nobody's running in any of them.</h2>
+  <div class="gap-grid">
+    <div class="gap-tile">
+      <div class="gap-tile-label">Paid LinkedIn</div>
+      <div class="gap-tile-value">Zero competitors are running it.</div>
+    </div>
+    <div class="gap-tile">
+      <div class="gap-tile-label">Blog Cadence</div>
+      <div class="gap-tile-value">Sparse to none. Months between posts.</div>
+    </div>
+    <div class="gap-tile">
+      <div class="gap-tile-label">Video Content</div>
+      <div class="gap-tile-value">Effectively absent across the category.</div>
+    </div>
+    <div class="gap-tile">
+      <div class="gap-tile-label">Full-Suite Story</div>
+      <div class="gap-tile-value">No competitor is telling a Catalog + TradePass + Pipeline + Signal + Canopy + Workspace story. Only you can.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4 — THE BET -->
+<section class="theme-navy-gold">
+  <span class="slide-num">04 / 15</span>
+  <div class="eyebrow">The Bet</div>
+  <p class="bet-statement">You become the <em>category leader in Material Operations AI</em> — publicly, weekly, on every surface a buyer touches.</p>
+  <p class="bet-sub">Category leadership compounds. The second mover never catches up.</p>
+</section>
+
+<!-- SLIDE 5 — THE HUB -->
+<section class="theme-navy">
+  <span class="slide-num">05 / 15</span>
+  <div class="eyebrow" style="color: var(--gold);">The Hub</div>
+  <h2 class="headline-md">One operator. One hub.<br>Ten surfaces.</h2>
+  <div class="hub-wrap">
+    <div class="hub-center">
+      <div class="hub-center-label">The Marketing Hub</div>
+      <div class="hub-center-name"><span>Every top-of-funnel surface.</span><span>One platform.</span><span>Closed-loop attribution.</span></div>
+      <div class="hub-center-meta">Posts, pages, ads, lead-gen forms, and conversions live in a single system. Automated production, attributed analytics, goal tracking against pipeline. 7 personas trained against the verified KB. Decision Records on every output — fully auditable.</div>
+    </div>
+    <div class="surface-grid">
+      <div class="surface-chip">LinkedIn posts · 5–7 / wk</div>
+      <div class="surface-chip">Long-form blog · 2 / wk</div>
+      <div class="surface-chip">AI-optimized landing pages</div>
+      <div class="surface-chip">CRO-tuned website</div>
+      <div class="surface-chip">Paid LinkedIn · always-on</div>
+      <div class="surface-chip">Gated playbooks · 1 / mo</div>
+      <div class="surface-chip">KB PDF library · top 10 refs</div>
+      <div class="surface-chip">Persona interviews · 2 / mo</div>
+      <div class="surface-chip">AI-generated video · 1 / wk</div>
+      <div class="surface-chip">Pipeline attribution dashboard</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6 — HOW DECISIONS GET MADE -->
+<section class="theme-navy">
+  <span class="slide-num">06 / 15</span>
+  <div class="eyebrow" style="color: var(--gold);">How Decisions Get Made</div>
+  <h2 class="headline-md">Foundation. Generation.<br>Conversion. Analysis.</h2>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-step-label">Step 1 · Foundation</div>
+      <div class="flow-step-title">Knowledge base + research</div>
+      <div class="flow-step-body">Verified KB. Founder and customer interviews captured. Product walkthroughs, technical references, and a steady signal feed from the trade press. The credibility gate — nothing publishes until this is locked.</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="flow-step-label">Step 2 · Generation</div>
+      <div class="flow-step-title">Cutting-edge AI content</div>
+      <div class="flow-step-body">Visually stunning playbooks, videos, interviews, long-form essays — built on the verified KB, tuned to each persona. Content that spurs conversation, not filler.</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="flow-step-label">Step 3 · Conversion</div>
+      <div class="flow-step-title">Persona-optimized landing pages</div>
+      <div class="flow-step-body">Top-of-the-line landing pages built on Step 1's KB + Step 2's content. Core Web Vitals green, schema-tagged, A/B variants from day one. Each page maps to one persona, one angle, one offer.</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="flow-step-label">Step 4 · Analysis</div>
+      <div class="flow-step-title">Closed-loop automation</div>
+      <div class="flow-step-body">Attribution feeds back into Step 1. The hub learns what converts, retires what doesn't, and scales the winners. Decision Records on every shipped artifact — fully auditable.</div>
+    </div>
+  </div>
+  <p class="flow-bottom">Each step compounds the next. The hub gets sharper with every cycle — every decision backed&nbsp;by&nbsp;data.</p>
+</section>
+
+<!-- SLIDE 7 — GENERATION (PROOF) -->
+<section class="theme-navy proof-slide">
+  <span class="slide-num">07 / 15</span>
+  <div class="proof-header">
+    <div class="eyebrow" style="color: var(--gold);">Generation</div>
+    <h2 class="headline-md">Visually stunning.<br>Verified by Knowledge Base.</h2>
+  </div>
+  <div class="proof-grid" id="proof-grid">
+
+    <!-- APEX — StatReveal motion graphic (real Remotion render) -->
+    <div class="proof-row proof-row--apex">
+      <article class="proof-tile proof-tile--video">
+        <div class="proof-square">
+          <video autoplay loop muted playsinline preload="metadata">
+            <source src="assets/deck-content/stat-reveal_16x9.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="proof-meta">
+          <span class="proof-tag">Motion graphic · 14s</span>
+          <p class="proof-desc">Distributor quoting-speed stat reveal. Brand-correct, KB-anchored. Rendered in Remotion across 9:16, 1:1, and 16:9.</p>
+          <a class="proof-link" href="https://quinnpochekailo.github.io/vailent-marketing-samples/video/" target="_blank" rel="noopener">View live ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- BASE — Playbook + Landing page (both live, both shipped) -->
+    <div class="proof-row proof-row--base">
+      <article class="proof-tile proof-tile--playbook">
+        <div class="proof-square">
+          <img class="scroll-image scroll-image-y" src="assets/deck-content/playbook-tall.png" alt="Vailent AI Adoption Playbook">
+        </div>
+        <div class="proof-meta">
+          <span class="proof-tag">Playbook · 6 chapters</span>
+          <p class="proof-desc">The AI Adoption Playbook for VP Sales / Commercial Excellence. ~3,000 words, inline-SVG visuals, single-file HTML.</p>
+          <a class="proof-link" href="https://quinnpochekailo.github.io/vailent-marketing-samples/playbook.html" target="_blank" rel="noopener">View live ↗</a>
+        </div>
+      </article>
+
+      <article class="proof-tile proof-tile--landing">
+        <div class="proof-square">
+          <img class="scroll-image scroll-image-y" src="assets/deck-content/landing-page-tall.png" alt="Vailent landing page">
+        </div>
+        <div class="proof-meta">
+          <span class="proof-tag">Landing page · live</span>
+          <p class="proof-desc">TradePass intro for distributor ops. Persona-tuned blocks, Core Web Vitals green, A/B-ready from the first paint.</p>
+          <a class="proof-link" href="https://quinnpochekailo.github.io/vailent-marketing-samples/landing/" target="_blank" rel="noopener">View live ↗</a>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- SLIDE 8 — DAY 1 -->
+<section class="theme-navy">
+  <span class="slide-num">08 / 15</span>
+  <div class="timeline-slide">
+    <div class="day-marker">
+      <div class="day-label">Timeline</div>
+      <div class="day-num">Day 1</div>
+      <div class="day-tag">Foundation lit on fire. Every measurement surface live before a single dollar runs.</div>
+    </div>
+    <ul class="deliverables">
+      <li><span class="surface-tag">Hub</span><span>Marketing hub deployed against your KB. 7 personas loaded and validated against the product walkthrough.</span></li>
+      <li><span class="surface-tag">Website</span><span>Site audit + technical SEO baseline — Core Web Vitals scored, schema markup gaps logged, redirect map drafted.</span></li>
+      <li><span class="surface-tag">CRM</span><span>HubSpot Free instance stood up. Contact + deal pipelines configured for the Vailent ICP <em>(Ideal Customer Profile)</em>. Lifecycle stages mapped MQL → SQL → SAL.</span></li>
+      <li><span class="surface-tag">GA4</span><span>GA4 property created, measurement ID provisioned. Enhanced Measurement on, cross-domain tracking configured.</span></li>
+      <li><span class="surface-tag">GTM</span><span>Google Tag Manager container deployed site-wide. Baseline triggers + dataLayer events wired (page_view, form_submit, scroll, outbound_click).</span></li>
+      <li><span class="surface-tag">Pixel</span><span>LinkedIn Insight Tag <em>(LIT)</em> live across the site. Meta Pixel deployed as retargeting insurance.</span></li>
+      <li><span class="surface-tag">CAPI</span><span>Server-side Conversion API stub ready — first-party offline conversion uploads queued for Day 7.</span></li>
+      <li><span class="surface-tag">API</span><span>LinkedIn Marketing Developer Platform application submitted: <code>r_ads</code>, <code>r_organization_social</code>, <code>w_member_social</code>.</span></li>
+      <li><span class="surface-tag">UTM</span><span>UTM tagging convention published. Every outbound link traceable to channel / campaign / persona / angle.</span></li>
+      <li><span class="surface-tag">Targeting</span><span>TAL <em>(Target Account List)</em> v1 — top 50 distributor accounts loaded into LinkedIn Matched Audiences.</span></li>
+      <li><span class="surface-tag">LinkedIn</span><span>First founder-lens post live. Pulse feed running on chemical-distribution signal sources.</span></li>
+      <li><span class="surface-tag">KB</span><span>Verification kickoff — ticket open, owners assigned by you. Credibility gate active.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SLIDE 9 — DAY 7 -->
+<section class="theme-navy">
+  <span class="slide-num">09 / 15</span>
+  <div class="timeline-slide">
+    <div class="day-marker">
+      <div class="day-label">Timeline</div>
+      <div class="day-num">Day 7</div>
+      <div class="day-tag">First week of category-defining output. Paid stack approved and ready to spend.</div>
+    </div>
+    <ul class="deliverables">
+      <li><span class="surface-tag">LinkedIn</span><span>5 posts published — one per persona angle. Founder voice + employee advocacy seeded.</span></li>
+      <li><span class="surface-tag">Blog</span><span>First long-form draft in review — the category-defining piece, schema-tagged for Article + FAQ.</span></li>
+      <li><span class="surface-tag">Landing</span><span>v1 page live for the top-priority persona. Core Web Vitals green. CRO baseline set.</span></li>
+      <li><span class="surface-tag">Paid</span><span>LinkedIn campaign drafted: TOFU Single Image Ad <em>(SIA)</em> + MOFU Document Ad <em>(DocAd)</em> + BOFU Lead Gen Form. Targeting, creative, bid strategy ready for your approval.</span></li>
+      <li><span class="surface-tag">Lead Gen</span><span>LinkedIn Lead Gen Form built — pre-filled fields, post-submit redirect, CRM sync via Zapier or native.</span></li>
+      <li><span class="surface-tag">CAPI</span><span>Conversion API live. Offline + form-fill conversions piping into LinkedIn for closed-loop reporting.</span></li>
+      <li><span class="surface-tag">CRO</span><span>Microsoft Clarity installed — heatmaps + session recordings on every landing page.</span></li>
+      <li><span class="surface-tag">Playbook</span><span>Outline drafted — TradePass-anchored: fraud and KYB for distributors.</span></li>
+      <li><span class="surface-tag">Domain</span><span>Memo: <strong>vailent.ai</strong> vs <strong>vailent.com</strong> recommendation, with redirect + canonical strategy.</span></li>
+      <li><span class="surface-tag">Video</span><span>First Remotion explainer video scripted.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SLIDE 10 — DAY 14 -->
+<section class="theme-navy">
+  <span class="slide-num">10 / 15</span>
+  <div class="timeline-slide">
+    <div class="day-marker">
+      <div class="day-label">Timeline</div>
+      <div class="day-num">Day 14</div>
+      <div class="day-tag">Velocity check. Paid is live. First MQLs in the CRM.</div>
+    </div>
+    <ul class="deliverables">
+      <li><span class="surface-tag">LinkedIn</span><span>Daily cadence locked — ≥10 posts shipped. Organic engagement baseline established per persona.</span></li>
+      <li><span class="surface-tag">Blog</span><span>2 posts published; blog section mounted on vailent.ai with category taxonomy + RSS.</span></li>
+      <li><span class="surface-tag">Landing</span><span>2 pages live. A/B variants running on hero + primary CTA — statistical significance gates set.</span></li>
+      <li><span class="surface-tag">Paid</span><span>LinkedIn campaign live and spending. TOFU + Lead Gen Forms in market. CPM / CPC / CPL benchmarks captured.</span></li>
+      <li><span class="surface-tag">MQL</span><span>First MQLs <em>(Marketing Qualified Leads)</em> hitting the CRM via Lead Gen Forms + landing-page submits.</span></li>
+      <li><span class="surface-tag">Attribution</span><span>First-touch attribution model confirmed in GA4 + CRM. UTM hygiene audited end-to-end.</span></li>
+      <li><span class="surface-tag">Audience</span><span>Persona retargeting audiences populated — LinkedIn Matched Audiences, GA4 audiences, lookalike seeds queued.</span></li>
+      <li><span class="surface-tag">Playbook</span><span>v1 published and gated. Lead capture wired end-to-end. Drip nurture sequence drafted.</span></li>
+      <li><span class="surface-tag">API</span><span>LinkedIn API access approved. Programmatic posting + ads reporting unlocked.</span></li>
+      <li><span class="surface-tag">Video</span><span>First Remotion video published. Native LinkedIn upload + YouTube mirror.</span></li>
+      <li><span class="surface-tag">Interview</span><span>First persona interview recorded.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SLIDE 11 — DAY 30 -->
+<section class="theme-navy">
+  <span class="slide-num">11 / 15</span>
+  <div class="hero-glow"></div>
+  <div class="timeline-slide">
+    <div class="day-marker">
+      <div class="day-label">Timeline</div>
+      <div class="day-num">Day 30</div>
+      <div class="day-tag">Mature funnels. Pipeline visible. Category leadership in market.</div>
+    </div>
+    <ul class="deliverables">
+      <li><span class="surface-tag">LinkedIn</span><span>Daily cadence in steady state — ≥30 posts shipped, engagement curve trending up per persona.</span></li>
+      <li><span class="surface-tag">Blog</span><span>4+ posts published, indexed, ranking on long-tail distributor queries. Topic cluster strategy live.</span></li>
+      <li><span class="surface-tag">Landing</span><span>3 pages live across top-3 personas. CRO loop running: Clarity → A/B test → next variant.</span></li>
+      <li><span class="surface-tag">Paid</span><span>LinkedIn campaigns optimized. CPL benchmarks set. Lookalike audiences seeded from MQL list. Frequency caps tuned.</span></li>
+      <li><span class="surface-tag">Funnels</span><span>Mature persona-targeted funnels: post → landing → playbook → nurture → meeting.</span></li>
+      <li><span class="surface-tag">Anthology</span><span>Category-defining anthology piece in production — competitive analysis adapted public.</span></li>
+      <li><span class="surface-tag">KB</span><span>PDF library v1 live — top-10 industry references for distributor decision committees.</span></li>
+      <li><span class="surface-tag">Meetings</span><span>Booked discovery meetings via outbound + inbound. (Booked, not signed — honest count.)</span></li>
+      <li><span class="surface-tag">Case Study</span><span>Scaffolding ready for the first 2–3 closes.</span></li>
+      <li><span class="surface-tag">Latency</span><span>Industry news → published content under 24 hours.</span></li>
+      <li><span class="surface-tag">Attribution</span><span>First-touch + multi-touch attribution reporting in the dashboard. Pipeline $ attached.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SLIDE 12 — OWNS -->
+<section class="theme-cream">
+  <span class="slide-num">12 / 15</span>
+  <div class="eyebrow" style="color: var(--orange);">Ownership</div>
+  <h2 class="headline-md">Clean lines.<br>No overlap.</h2>
+  <div class="split">
+    <div class="split-col you">
+      <h4>You Own</h4>
+      <ul>
+        <li>Knowledge base accuracy &amp; sign-off</li>
+        <li>Founder voice approval</li>
+        <li>Product roadmap &amp; positioning</li>
+        <li>Customer relationships &amp; references</li>
+        <li>The sales close — conversion handoff</li>
+      </ul>
+    </div>
+    <div class="split-col mine">
+      <h4>I Own</h4>
+      <ul>
+        <li>Brand voice &amp; messaging system</li>
+        <li>Website + landing page production</li>
+        <li>Blog content + SEO topic clusters</li>
+        <li>LinkedIn organic — daily, persona-routed</li>
+        <li>LinkedIn Paid — account targeting, optimization, attribution</li>
+        <li>Lead magnets — playbooks &amp; anthology</li>
+        <li>Reporting &amp; performance dashboard</li>
+      </ul>
+    </div>
+    <div class="split-col built">
+      <h4>Already Built</h4>
+      <ul>
+        <li>The hub — KB-grounded content engine</li>
+        <li>7 personas loaded &amp; validated</li>
+        <li>Competitive analysis (companion doc)</li>
+        <li>Brand assets + motion pipeline</li>
+        <li>Decision Records system</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 13 — ACTION ITEMS -->
+<section class="theme-navy">
+  <span class="slide-num">13 / 15</span>
+  <div class="eyebrow" style="color: var(--gold);">Launch Checklist</div>
+  <h2 class="headline-md">Action items for Vailent to launch.</h2>
+  <div class="actions">
+    <div class="action">
+      <div class="action-role">In-depth product walkthrough</div>
+      <div class="action-detail">Full demo of the platform so messaging maps to what the product actually does.</div>
+    </div>
+    <div class="action">
+      <div class="action-role">CRM access + hub connection</div>
+      <div class="action-detail">Read/write API access. Lifecycle stages defined (MQL → SQL → SAL) before pipelines wire up.</div>
+    </div>
+    <div class="action">
+      <div class="action-role">Ad budget confirmation</div>
+      <div class="action-detail">LinkedIn Paid spend approval, ramp schedule, and escalation thresholds.</div>
+    </div>
+    <div class="action">
+      <div class="action-role">Website access</div>
+      <div class="action-detail">CMS + DNS so the blog mount, landing pages, and tracking stack can deploy.</div>
+    </div>
+    <div class="action">
+      <div class="action-role">Backend code access</div>
+      <div class="action-detail">Repo + staging for product-led integrations and conversion instrumentation.</div>
+    </div>
+    <div class="action">
+      <div class="action-role">Brand &amp; asset access</div>
+      <div class="action-detail">Logos, founder/team photos, approved customer references and screenshots.</div>
+    </div>
+    <div class="action">
+      <div class="action-role">Domain decision</div>
+      <div class="action-detail">vailent.ai vs vailent.com — site of record before the blog mounts.</div>
+    </div>
+    <div class="action">
+      <div class="action-role">Sales pipeline visibility</div>
+      <div class="action-detail">Current deals, win/loss themes, distributor objections — so content targets real pain.</div>
+    </div>
+    <div class="action">
+      <div class="action-role">Willingness to participate</div>
+      <div class="action-detail">Leadership buy-in on short interviews, founder-voice review, and content contribution.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 14 — PRICING / THE MATH -->
+<section class="theme-navy pricing-slide">
+  <span class="slide-num">14 / 15</span>
+  <div class="eyebrow" style="color: var(--gold);">Investment</div>
+  <h2 class="headline-md">Three roads.<br>Same destination.</h2>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">In-House Build</div>
+      <div class="price-amount">$55K<span class="price-amount-sub">/ month</span></div>
+      <div class="price-meta">5–8 FTEs · 6–12 month hire ramp · tools + stack on top</div>
+      <ul class="price-list">
+        <li>Director of marketing + 3–5 reports</li>
+        <li>Full benefits, overhead, software stack</li>
+        <li>First post lives quarters from now</li>
+        <li>Highest sunk cost before first MQL</li>
+      </ul>
+      <div class="price-savings">$660K / year loaded</div>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Agency Retainer</div>
+      <div class="price-amount">$20K<span class="price-amount-sub">/ month</span></div>
+      <div class="price-meta">3–7 shared people · 30–60 day onboarding</div>
+      <ul class="price-list">
+        <li>Generic B2B playbook, not chemical-distribution native</li>
+        <li>Account team turnover quarter to quarter</li>
+        <li>Slow iteration through layers of project management</li>
+        <li>You're one logo among many</li>
+      </ul>
+      <div class="price-savings">$240K / year · still $120K above me</div>
+    </div>
+    <div class="price-card winner">
+      <div class="price-tier">Me + the Hub</div>
+      <div class="price-amount">$10K<span class="price-amount-sub">/ month</span></div>
+      <div class="price-meta">1 operator · Monday start · KB-native execution</div>
+      <ul class="price-list">
+        <li>Same person Day 1 → Day 30 → ongoing</li>
+        <li>Built on the hub — AI as the leverage multiplier</li>
+        <li>Daily cadence from week one, not month four</li>
+        <li>Decisions in hours, not approval chains</li>
+      </ul>
+      <div class="price-savings">$120K / year · $540K under in-house</div>
+    </div>
+  </div>
+  <p class="pricing-kicker">Same Day 30. Same Monday start. <em>One operator, one stack, one bill.</em></p>
+</section>
+
+<!-- SLIDE 15 — CLOSE -->
+<section class="theme-navy">
+  <svg class="brand-logo brand-logo--sm" viewBox="0 0 251 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Vailent">
+    <path d="M69 23.3885C69 29.6782 63.967 34.777 57.7585 34.777C51.5499 34.777 46.5169 29.6782 46.5169 23.3885C46.5169 17.0988 51.5499 12 57.7585 12C63.967 12 69 17.0988 69 23.3885Z" fill="url(#brandMark1c)"/>
+    <path d="M22.2415 12C28.4501 12 33.4831 17.0988 33.4831 23.3885C33.4831 24.0405 33.4288 24.6796 33.3249 25.3016C31.5414 37.1393 30.2383 40.4851 44.5437 45.9823C48.9834 47.9812 51.4498 52.2896 51.4498 56.4768C51.4498 62.4737 46.5169 68.4705 38.6243 67.9708C33.1981 66.9713 29.2517 63.4731 28.7585 56.9765C28.7585 55.6443 28.9415 54.3272 29.2504 53.0313C31.9809 41.5732 29.6427 37.8139 19.0155 34.3009C14.3792 32.8963 11 28.5423 11 23.3885C11 17.0988 16.033 12 22.2415 12Z" fill="url(#brandMark2c)"/>
+    <path d="M225.675 35.2676H220.523V31.0676H225.675V23.0596H230.267V31.0676H237.491V35.2676H230.267V52.1236C230.267 53.3182 230.491 54.1769 230.939 54.6996C231.425 55.1849 232.246 55.4276 233.403 55.4276H238.387V59.6276H233.123C230.435 59.6276 228.513 59.0302 227.355 57.8356C226.235 56.6409 225.675 54.7556 225.675 52.1796V35.2676Z" fill="currentColor"/>
+    <path d="M207.221 30.7314C210.693 30.7314 213.474 31.7768 215.565 33.8674C217.693 35.9581 218.757 39.2434 218.757 43.7234V59.6274H214.165V44.0034C214.165 41.0541 213.493 38.8141 212.149 37.2834C210.842 35.7154 208.938 34.9314 206.437 34.9314C203.749 34.9314 201.639 35.8648 200.109 37.7314C198.578 39.5981 197.813 42.1368 197.813 45.3474V59.6274H193.221V31.0674H197.197L197.813 34.9314C199.978 32.1314 203.114 30.7314 207.221 30.7314Z" fill="currentColor"/>
+    <path d="M161.717 45.3474C161.717 42.4354 162.277 39.8781 163.397 37.6754C164.554 35.4728 166.159 33.7741 168.213 32.5794C170.266 31.3474 172.618 30.7314 175.269 30.7314C177.882 30.7314 180.197 31.2728 182.213 32.3554C184.229 33.4381 185.815 35.0061 186.973 37.0594C188.13 39.1128 188.746 41.5208 188.821 44.2834C188.821 44.6941 188.783 45.3474 188.709 46.2434H166.533V46.6354C166.607 49.4354 167.466 51.6754 169.109 53.3554C170.751 55.0354 172.898 55.8754 175.549 55.8754C177.602 55.8754 179.338 55.3714 180.757 54.3634C182.213 53.3181 183.183 51.8808 183.669 50.0514H188.317C187.757 52.9634 186.357 55.3528 184.117 57.2194C181.877 59.0488 179.133 59.9634 175.885 59.9634C173.047 59.9634 170.565 59.3661 168.437 58.1714C166.309 56.9394 164.647 55.2221 163.453 53.0194C162.295 50.7794 161.717 48.2221 161.717 45.3474ZM184.061 42.4354C183.837 40.0088 182.922 38.1234 181.317 36.7794C179.749 35.4354 177.751 34.7634 175.325 34.7634C173.159 34.7634 171.255 35.4728 169.613 36.8914C167.97 38.3101 167.037 40.1581 166.813 42.4354H184.061Z" fill="currentColor"/>
+    <path d="M152.683 20.4277H157.275V59.6277H152.683V20.4277Z" fill="currentColor"/>
+    <path d="M144.936 20.0361C145.794 20.0361 146.504 20.3161 147.064 20.8761C147.624 21.4361 147.904 22.1455 147.904 23.0041C147.904 23.8628 147.624 24.5721 147.064 25.1321C146.504 25.6921 145.794 25.9721 144.936 25.9721C144.077 25.9721 143.368 25.6921 142.808 25.1321C142.248 24.5721 141.968 23.8628 141.968 23.0041C141.968 22.1455 142.248 21.4361 142.808 20.8761C143.368 20.3161 144.077 20.0361 144.936 20.0361ZM142.64 31.0681H147.232V59.6281H142.64V31.0681Z" fill="currentColor"/>
+    <path d="M139.95 55.4274V59.6274H137.43C135.6 59.6274 134.294 59.2541 133.51 58.5074C132.726 57.7608 132.315 56.6594 132.278 55.2034C130.075 58.3768 126.883 59.9634 122.702 59.9634C119.528 59.9634 116.971 59.2168 115.03 57.7234C113.126 56.2301 112.174 54.1954 112.174 51.6194C112.174 48.7448 113.144 46.5421 115.086 45.0114C117.064 43.4808 119.92 42.7154 123.654 42.7154H132.054V40.7554C132.054 38.8888 131.419 37.4328 130.15 36.3874C128.918 35.3421 127.182 34.8194 124.942 34.8194C122.963 34.8194 121.32 35.2674 120.014 36.1634C118.744 37.0221 117.96 38.1794 117.662 39.6354H113.07C113.406 36.8354 114.638 34.6514 116.766 33.0834C118.931 31.5154 121.731 30.7314 125.166 30.7314C128.824 30.7314 131.643 31.6274 133.622 33.4194C135.638 35.1741 136.646 37.7128 136.646 41.0354V53.3554C136.646 54.7368 137.28 55.4274 138.55 55.4274H139.95ZM132.054 46.5794H123.206C118.95 46.5794 116.822 48.1661 116.822 51.3394C116.822 52.7581 117.382 53.8968 118.502 54.7554C119.622 55.6141 121.134 56.0434 123.038 56.0434C125.838 56.0434 128.04 55.3154 129.646 53.8594C131.251 52.3661 132.054 50.4061 132.054 47.9794V46.5794Z" fill="currentColor"/>
+    <path d="M80 20.4277H85.152L97.136 53.8597L109.064 20.4277H114.104L99.992 59.6277H94.112L80 20.4277Z" fill="currentColor"/>
+    <defs>
+      <linearGradient id="brandMark1c" x1="14.9658" y1="12" x2="79.3605" y2="29.1906" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FAEC8C"/>
+        <stop offset="1" stop-color="#FD6437"/>
+      </linearGradient>
+      <linearGradient id="brandMark2c" x1="14.9658" y1="12" x2="79.3605" y2="29.1906" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FAEC8C"/>
+        <stop offset="1" stop-color="#FD6437"/>
+      </linearGradient>
+    </defs>
+  </svg>
+  <span class="slide-num">15 / 15</span>
+  <div class="eyebrow" style="color: var(--gold); margin-top: clamp(40px, 6vh, 64px);">Next Steps</div>
+  <p class="close-statement">Here's what ships <em>Monday.</em></p>
+  <ul class="close-recap">
+    <li>The hub deployed against your KB. 7 personas loaded and validated.</li>
+    <li>CRM stood up — ICP pipelines, MQL → SQL → SAL lifecycle mapped.</li>
+    <li>GA4 + GTM + LinkedIn Insight Tag + Meta Pixel — full measurement stack live before a dollar runs.</li>
+    <li>LinkedIn API access submitted. UTM convention published. Conversion API stubbed.</li>
+    <li>Target account list — top 50 distributor accounts loaded into LinkedIn Matched Audiences.</li>
+    <li>First founder-lens LinkedIn post live. Pulse feed running on chemical-distribution sources.</li>
+    <li>KB verification kickoff — ticket open, owners assigned.</li>
+  </ul>
+  <p class="kicker">If the shape works, the next conversation is the commercial one.</p>
+  <div class="close-link">Samples · <a href="https://quinnpochekailo.github.io/vailent-marketing-samples/">vailent-marketing-samples</a></div>
+</section>
+
+</div>
+
+<script>
+// Animate stat counters on scroll into view
+(function () {
+  const nums = document.querySelectorAll('.stat-num');
+
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1100;
+    const start = performance.now();
+    const startVal = 0;
+
+    function tick(now) {
+      const t = Math.min(1, (now - start) / duration);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(startVal + (target - startVal) * eased);
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = '1';
+        entry.target.classList.add('in');
+        animateCount(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  nums.forEach((n) => {
+    n.textContent = '0' + (n.dataset.suffix || '');
+    io.observe(n);
+  });
+})();
+
+// Proof slide — gate video + CSS animations on visibility to keep the rest
+// of the deck idle. Without this, scroll/pulse keyframes run on every slide.
+(function () {
+  const grid = document.getElementById('proof-grid');
+  if (!grid) return;
+  const slide = grid.closest('section');
+  const video = grid.querySelector('video');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const visible = entry.isIntersecting && entry.intersectionRatio > 0.35;
+      grid.classList.toggle('is-active', visible);
+      if (!video) return;
+      if (visible) {
+        const p = video.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: [0, 0.35, 0.7] });
+
+  io.observe(slide);
+})();
+
+// Keyboard navigation: PageUp/PageDown/Arrow keys advance one slide
+(function () {
+  const deck = document.getElementById('deck');
+  const sections = Array.from(deck.querySelectorAll('section'));
+
+  function currentIndex() {
+    const top = deck.scrollTop;
+    let idx = 0;
+    let best = Infinity;
+    sections.forEach((s, i) => {
+      const d = Math.abs(s.offsetTop - top);
+      if (d < best) { best = d; idx = i; }
+    });
+    return idx;
+  }
+
+  function go(delta) {
+    const i = currentIndex();
+    const next = Math.max(0, Math.min(sections.length - 1, i + delta));
+    sections[next].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
+      e.preventDefault();
+      go(1);
+    } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
+      e.preventDefault();
+      go(-1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      sections[0].scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      sections[sections.length - 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
