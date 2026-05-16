@@ -763,140 +763,6 @@ h3.headline-sm {
 .proof-row--base .proof-link { font-size: clamp(0.75rem, 0.85vw, 0.9rem); }
 .proof-link:hover { color: var(--coral); }
 
-/* SLIDE 14 — PRICING / THE MATH */
-.pricing-slide {
-  justify-content: flex-start;
-  padding-top: clamp(28px, 4vh, 56px);
-  padding-bottom: clamp(24px, 3vh, 40px);
-  position: relative;
-  overflow: hidden;
-}
-.pricing-slide::before {
-  content: "";
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  width: 60vw;
-  height: 60vw;
-  max-width: 900px;
-  max-height: 900px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle at center, rgba(253, 100, 55, 0.18) 0%, rgba(250, 236, 140, 0.06) 35%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
-}
-.pricing-slide > *:not(.slide-num) { position: relative; z-index: 1; }
-.pricing-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1.15fr;
-  gap: clamp(16px, 1.8vw, 28px);
-  margin-top: clamp(24px, 3.5vh, 44px);
-  align-items: stretch;
-}
-.price-card {
-  border: 1px solid var(--hairline);
-  background: var(--fg-04);
-  border-radius: 16px;
-  padding: clamp(20px, 2.2vh, 32px) clamp(18px, 2vw, 28px);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 1.4vh, 18px);
-  position: relative;
-}
-.price-card.winner {
-  border: 2px solid transparent;
-  background: linear-gradient(var(--black-elev), var(--black-elev)) padding-box,
-              linear-gradient(135deg, var(--lemon) 0%, var(--coral) 100%) border-box;
-  box-shadow: 0 0 60px rgba(253, 100, 55, 0.22), 0 0 120px rgba(250, 236, 140, 0.08);
-  transform: translateY(-12px);
-}
-.price-tier {
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--fg-60);
-}
-.price-card.winner .price-tier {
-  background-image: linear-gradient(90deg, var(--lemon) 0%, var(--coral) 100%);
-  -webkit-background-clip: text;
-          background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-.price-amount {
-  font-size: clamp(2rem, 3.6vw, 3.4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-.price-amount-sub {
-  font-size: 0.85rem;
-  font-weight: 500;
-  opacity: 0.55;
-  margin-left: 6px;
-}
-.price-card.winner .price-amount {
-  background-image: linear-gradient(135deg, var(--coral) 0%, #FF8856 45%, var(--lemon) 100%);
-  -webkit-background-clip: text;
-          background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-.price-meta {
-  font-size: clamp(0.78rem, 0.95vw, 0.92rem);
-  opacity: 0.6;
-  line-height: 1.4;
-  padding-bottom: clamp(10px, 1.2vh, 16px);
-  border-bottom: 1px solid var(--hairline);
-}
-.price-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(7px, 1vh, 10px);
-  flex: 1;
-}
-.price-list li {
-  font-size: clamp(0.82rem, 0.98vw, 0.98rem);
-  line-height: 1.4;
-  padding-left: 18px;
-  position: relative;
-  opacity: 0.85;
-}
-.price-list li::before {
-  content: "—";
-  position: absolute;
-  left: 0;
-  opacity: 0.4;
-}
-.price-card.winner .price-list li::before { color: var(--coral); opacity: 0.7; }
-.price-savings {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 4px;
-}
-.price-card.winner .price-savings { color: var(--coral); }
-.pricing-kicker {
-  margin-top: clamp(20px, 3vh, 36px);
-  font-size: clamp(0.95rem, 1.15vw, 1.15rem);
-  text-align: center;
-  opacity: 0.7;
-}
-.pricing-kicker em {
-  font-style: normal;
-  background-image: linear-gradient(90deg, var(--lemon) 0%, var(--coral) 100%);
-  -webkit-background-clip: text;
-          background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-}
-
 /* MOBILE / NARROW */
 @media (max-width: 900px) {
   section { padding: 28px 24px; height: auto; min-height: 100vh; }
@@ -911,10 +777,10 @@ h3.headline-sm {
   .day-num { font-size: clamp(4rem, 18vw, 8rem); }
   .split { grid-template-columns: 1fr; }
   .actions { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .price-card.winner { transform: none; }
   .proof-row { flex-direction: column; align-items: center; }
   .proof-tile { flex-direction: column; align-items: flex-start; width: 100%; max-width: 420px; }
+  .proof-row--apex .proof-square,
+  .proof-row--base .proof-square { width: 100%; height: auto; }
   .proof-row--apex .proof-meta,
   .proof-row--base .proof-meta { width: 100%; }
   .proof-header .headline-md { max-width: 100%; }
@@ -955,7 +821,7 @@ h3.headline-sm {
       </linearGradient>
     </defs>
   </svg>
-  <span class="slide-num">01 / 15</span>
+  <span class="slide-num">01 / 14</span>
   <div class="eyebrow hero-eyebrow" style="margin-top: clamp(48px, 7vh, 80px);">Marketing Plan · 2026 Q2 / Q3</div>
   <h1 class="headline">Category Winning<br>to Drive Leads.</h1>
   <p class="category-def">
@@ -966,7 +832,7 @@ h3.headline-sm {
 
 <!-- SLIDE 2 — THE WINDOW -->
 <section class="theme-navy">
-  <span class="slide-num">02 / 15</span>
+  <span class="slide-num">02 / 14</span>
   <div class="eyebrow" style="color: var(--gold);">The Window</div>
   <h2 class="headline-md">The category is unclaimed.<br>We have a six-month head start.</h2>
   <div class="stats-grid">
@@ -988,7 +854,7 @@ h3.headline-sm {
 
 <!-- SLIDE 3 — THE GAPS -->
 <section class="theme-navy">
-  <span class="slide-num">03 / 15</span>
+  <span class="slide-num">03 / 14</span>
   <div class="eyebrow" style="color: var(--gold);">The Gaps</div>
   <h2 class="headline-md">Four open lanes.<br>Nobody's running in any of them.</h2>
   <div class="gap-grid">
@@ -1013,7 +879,7 @@ h3.headline-sm {
 
 <!-- SLIDE 4 — THE BET -->
 <section class="theme-navy-gold">
-  <span class="slide-num">04 / 15</span>
+  <span class="slide-num">04 / 14</span>
   <div class="eyebrow">The Bet</div>
   <p class="bet-statement">You become the <em>category leader in Material Operations AI</em> — publicly, weekly, on every surface a buyer touches.</p>
   <p class="bet-sub">Category leadership compounds. The second mover never catches up.</p>
@@ -1021,7 +887,7 @@ h3.headline-sm {
 
 <!-- SLIDE 5 — THE HUB -->
 <section class="theme-navy">
-  <span class="slide-num">05 / 15</span>
+  <span class="slide-num">05 / 14</span>
   <div class="eyebrow" style="color: var(--gold);">The Hub</div>
   <h2 class="headline-md">One operator. One hub.<br>Ten surfaces.</h2>
   <div class="hub-wrap">
@@ -1047,7 +913,7 @@ h3.headline-sm {
 
 <!-- SLIDE 6 — HOW DECISIONS GET MADE -->
 <section class="theme-navy">
-  <span class="slide-num">06 / 15</span>
+  <span class="slide-num">06 / 14</span>
   <div class="eyebrow" style="color: var(--gold);">How Decisions Get Made</div>
   <h2 class="headline-md">Foundation. Generation.<br>Conversion. Analysis.</h2>
   <div class="flow">
@@ -1080,7 +946,7 @@ h3.headline-sm {
 
 <!-- SLIDE 7 — GENERATION (PROOF) -->
 <section class="theme-navy proof-slide">
-  <span class="slide-num">07 / 15</span>
+  <span class="slide-num">07 / 14</span>
   <div class="proof-header">
     <div class="eyebrow" style="color: var(--gold);">Generation</div>
     <h2 class="headline-md">Visually stunning.<br>Verified by Knowledge Base.</h2>
@@ -1133,7 +999,7 @@ h3.headline-sm {
 
 <!-- SLIDE 8 — DAY 1 -->
 <section class="theme-navy">
-  <span class="slide-num">08 / 15</span>
+  <span class="slide-num">08 / 14</span>
   <div class="timeline-slide">
     <div class="day-marker">
       <div class="day-label">Timeline</div>
@@ -1159,7 +1025,7 @@ h3.headline-sm {
 
 <!-- SLIDE 9 — DAY 7 -->
 <section class="theme-navy">
-  <span class="slide-num">09 / 15</span>
+  <span class="slide-num">09 / 14</span>
   <div class="timeline-slide">
     <div class="day-marker">
       <div class="day-label">Timeline</div>
@@ -1183,7 +1049,7 @@ h3.headline-sm {
 
 <!-- SLIDE 10 — DAY 14 -->
 <section class="theme-navy">
-  <span class="slide-num">10 / 15</span>
+  <span class="slide-num">10 / 14</span>
   <div class="timeline-slide">
     <div class="day-marker">
       <div class="day-label">Timeline</div>
@@ -1208,7 +1074,7 @@ h3.headline-sm {
 
 <!-- SLIDE 11 — DAY 30 -->
 <section class="theme-navy">
-  <span class="slide-num">11 / 15</span>
+  <span class="slide-num">11 / 14</span>
   <div class="hero-glow"></div>
   <div class="timeline-slide">
     <div class="day-marker">
@@ -1234,7 +1100,7 @@ h3.headline-sm {
 
 <!-- SLIDE 12 — OWNS -->
 <section class="theme-cream">
-  <span class="slide-num">12 / 15</span>
+  <span class="slide-num">12 / 14</span>
   <div class="eyebrow" style="color: var(--orange);">Ownership</div>
   <h2 class="headline-md">Clean lines.<br>No overlap.</h2>
   <div class="split">
@@ -1275,7 +1141,7 @@ h3.headline-sm {
 
 <!-- SLIDE 13 — ACTION ITEMS -->
 <section class="theme-navy">
-  <span class="slide-num">13 / 15</span>
+  <span class="slide-num">13 / 14</span>
   <div class="eyebrow" style="color: var(--gold);">Launch Checklist</div>
   <h2 class="headline-md">Action items for Vailent to launch.</h2>
   <div class="actions">
@@ -1318,53 +1184,7 @@ h3.headline-sm {
   </div>
 </section>
 
-<!-- SLIDE 14 — PRICING / THE MATH -->
-<section class="theme-navy pricing-slide">
-  <span class="slide-num">14 / 15</span>
-  <div class="eyebrow" style="color: var(--gold);">Investment</div>
-  <h2 class="headline-md">Three roads.<br>Same destination.</h2>
-  <div class="pricing-grid">
-    <div class="price-card">
-      <div class="price-tier">In-House Build</div>
-      <div class="price-amount">$55K<span class="price-amount-sub">/ month</span></div>
-      <div class="price-meta">5–8 FTEs · 6–12 month hire ramp · tools + stack on top</div>
-      <ul class="price-list">
-        <li>Director of marketing + 3–5 reports</li>
-        <li>Full benefits, overhead, software stack</li>
-        <li>First post lives quarters from now</li>
-        <li>Highest sunk cost before first MQL</li>
-      </ul>
-      <div class="price-savings">$660K / year loaded</div>
-    </div>
-    <div class="price-card">
-      <div class="price-tier">Agency Retainer</div>
-      <div class="price-amount">$20K<span class="price-amount-sub">/ month</span></div>
-      <div class="price-meta">3–7 shared people · 30–60 day onboarding</div>
-      <ul class="price-list">
-        <li>Generic B2B playbook, not chemical-distribution native</li>
-        <li>Account team turnover quarter to quarter</li>
-        <li>Slow iteration through layers of project management</li>
-        <li>You're one logo among many</li>
-      </ul>
-      <div class="price-savings">$240K / year · still $120K above me</div>
-    </div>
-    <div class="price-card winner">
-      <div class="price-tier">Me + the Hub</div>
-      <div class="price-amount">$10K<span class="price-amount-sub">/ month</span></div>
-      <div class="price-meta">1 operator · Monday start · KB-native execution</div>
-      <ul class="price-list">
-        <li>Same person Day 1 → Day 30 → ongoing</li>
-        <li>Built on the hub — AI as the leverage multiplier</li>
-        <li>Daily cadence from week one, not month four</li>
-        <li>Decisions in hours, not approval chains</li>
-      </ul>
-      <div class="price-savings">$120K / year · $540K under in-house</div>
-    </div>
-  </div>
-  <p class="pricing-kicker">Same Day 30. Same Monday start. <em>One operator, one stack, one bill.</em></p>
-</section>
-
-<!-- SLIDE 15 — CLOSE -->
+<!-- SLIDE 14 — CLOSE -->
 <section class="theme-navy">
   <svg class="brand-logo brand-logo--sm" viewBox="0 0 251 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Vailent">
     <path d="M69 23.3885C69 29.6782 63.967 34.777 57.7585 34.777C51.5499 34.777 46.5169 29.6782 46.5169 23.3885C46.5169 17.0988 51.5499 12 57.7585 12C63.967 12 69 17.0988 69 23.3885Z" fill="url(#brandMark1c)"/>
@@ -1387,7 +1207,7 @@ h3.headline-sm {
       </linearGradient>
     </defs>
   </svg>
-  <span class="slide-num">15 / 15</span>
+  <span class="slide-num">14 / 14</span>
   <div class="eyebrow" style="color: var(--gold); margin-top: clamp(40px, 6vh, 64px);">Next Steps</div>
   <p class="close-statement">Here's what ships <em>Monday.</em></p>
   <ul class="close-recap">
