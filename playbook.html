@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Spreadsheets to Signals — An AI Adoption Playbook for Commercial Leaders in Material Industries</title>
+<style>
+:root {
+  /* Vailent brand — dark-mode-first, matched to vailent.com + logo.svg gradient */
+  --black:        #1A1A1A;
+  --black-elev:   #232323;
+  --coral:        #FD6437;
+  --coral-mid:    #FF8856;
+  --lemon:        #FAEC8C;
+  --fg:           #FFFFFF;
+  --fg-85:        rgba(255,255,255,0.85);
+  --fg-70:        rgba(255,255,255,0.70);
+  --fg-55:        rgba(255,255,255,0.55);
+  --fg-40:        rgba(255,255,255,0.40);
+  --fg-12:        rgba(255,255,255,0.12);
+  --fg-06:        rgba(255,255,255,0.06);
+  --fg-04:        rgba(255,255,255,0.04);
+  --measure:      66ch;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  background: var(--black);
+  color: var(--fg);
+  line-height: 1.55;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "kern";
+}
+
+/* ===================== BRAND GRADIENT ===================== */
+.grad,
+.grad-text {
+  background-image: linear-gradient(135deg, var(--coral) 0%, var(--coral-mid) 45%, var(--lemon) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===================== LAYOUT ===================== */
+.book {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.page {
+  padding: clamp(48px, 7vw, 120px) clamp(28px, 6vw, 96px);
+  position: relative;
+}
+
+.page--measure > * { max-width: var(--measure); }
+.page--measure > .full { max-width: none; }
+
+/* ===================== TYPOGRAPHY ===================== */
+.eyebrow {
+  display: inline-block;
+  font-size: clamp(0.7rem, 0.85vw, 0.8rem);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--lemon);
+  margin-bottom: clamp(16px, 2.5vh, 28px);
+}
+
+h1.display {
+  font-size: clamp(2.8rem, 7.5vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+h2.chapter-title {
+  font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.028em;
+  line-height: 1.02;
+  margin-bottom: clamp(20px, 3vh, 36px);
+  max-width: 22ch;
+}
+
+h3.section-title {
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: clamp(36px, 5vh, 56px) 0 clamp(14px, 2vh, 20px);
+}
+
+h4.minor-title {
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: clamp(20px, 3vh, 28px) 0 8px;
+  color: var(--fg);
+}
+
+p {
+  font-size: clamp(0.98rem, 1.1vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--fg-85);
+  margin-bottom: clamp(14px, 2vh, 20px);
+}
+
+p.lede {
+  font-size: clamp(1.15rem, 1.6vw, 1.55rem);
+  line-height: 1.45;
+  color: var(--fg);
+  font-weight: 400;
+  max-width: 50ch;
+}
+
+strong { color: var(--fg); font-weight: 700; }
+em { font-style: italic; color: var(--fg); }
+
+a {
+  color: var(--lemon);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(250,236,140,0.4);
+  transition: border-color 0.2s;
+}
+a:hover { border-bottom-color: var(--lemon); }
+
+ul, ol { padding-left: 0; list-style: none; }
+li {
+  font-size: clamp(0.98rem, 1.1vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--fg-85);
+  padding-left: 28px;
+  position: relative;
+  margin-bottom: clamp(10px, 1.5vh, 14px);
+}
+li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 14px;
+  height: 1px;
+  background: var(--coral);
+}
+
+/* ===================== BRAND LOGO ===================== */
+.brand-logo { display: block; height: 32px; width: auto; }
+.brand-logo--lg { height: clamp(40px, 5vh, 56px); }
+.brand-logo--sm { height: 24px; }
+
+/* ===================== TOP NAV ===================== */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(26,26,26,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--fg-12);
+}
+.topnav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px clamp(28px, 6vw, 96px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.topnav-meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-55);
+  font-weight: 700;
+}
+.topnav-meta strong { color: var(--lemon); font-weight: 700; }
+
+/* ===================== COVER ===================== */
+.cover {
+  min-height: 100vh;
+  padding: clamp(48px, 6vh, 80px) clamp(28px, 6vw, 96px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--fg-12);
+}
+.cover-glow {
+  position: absolute;
+  bottom: -25%;
+  right: -15%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 760px;
+  max-height: 760px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(253,100,55,0.50) 0%, rgba(253,100,55,0) 65%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+.cover-top, .cover-body, .cover-foot { position: relative; z-index: 1; }
+.cover-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cover-body {
+  max-width: min(960px, 75%);
+  margin: clamp(60px, 12vh, 140px) 0;
+}
+.cover-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--lemon);
+  margin-bottom: clamp(24px, 4vh, 40px);
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid rgba(250,236,140,0.35);
+  border-radius: 4px;
+}
+.cover-title {
+  font-size: clamp(2.8rem, 8.5vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  margin-bottom: clamp(28px, 4vh, 44px);
+}
+.cover-title em { font-style: normal; }
+.cover-sub {
+  font-size: clamp(1.05rem, 1.5vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--fg-70);
+  font-weight: 400;
+  max-width: 64ch;
+}
+.cover-rule {
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--coral) 0%, var(--lemon) 100%);
+  margin-bottom: clamp(20px, 3vh, 32px);
+}
+.cover-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--fg-55);
+}
+.cover-foot .cat { color: var(--coral); }
+.cover-foot .url { color: var(--lemon); }
+
+/* ===================== CHAPTER OPENER ===================== */
+.opener {
+  min-height: 70vh;
+  padding: clamp(60px, 12vh, 140px) clamp(28px, 6vw, 96px);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+  border-bottom: 1px solid var(--fg-12);
+  page-break-before: always;
+}
+.opener-mark .ch-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--lemon);
+  margin-bottom: clamp(12px, 1.5vh, 16px);
+}
+.opener-mark .ch-num {
+  font-size: clamp(7rem, 18vw, 16rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  font-variant-numeric: tabular-nums;
+  padding-bottom: 0.06em;
+}
+.opener-mark .ch-rule {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--coral) 0%, var(--lemon) 100%);
+  margin-top: clamp(16px, 2.5vh, 28px);
+}
+.opener-body .ch-kicker {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.5;
+  color: var(--fg-70);
+  margin-top: clamp(16px, 2.5vh, 24px);
+  max-width: 38ch;
+}
+
+/* ===================== STAT BAND ===================== */
+.stat-band {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  margin: clamp(36px, 5vh, 56px) 0;
+  max-width: none;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.stat-num {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: clamp(0.9rem, 1.05vw, 1rem);
+  line-height: 1.45;
+  color: var(--fg-70);
+  border-top: 1px solid var(--fg-12);
+  padding-top: 14px;
+}
+
+/* ===================== PULL QUOTE ===================== */
+.pullquote {
+  margin: clamp(36px, 6vh, 64px) 0;
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 4vw, 48px) clamp(28px, 4vw, 48px) clamp(32px, 5vw, 64px);
+  border-left: 3px solid var(--coral);
+  position: relative;
+}
+.pullquote-mark {
+  position: absolute;
+  top: clamp(8px, 1vh, 12px);
+  left: clamp(20px, 3vw, 32px);
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 1;
+  font-weight: 800;
+  font-family: Georgia, "Times New Roman", serif;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+}
+.pullquote-body {
+  font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.25;
+  color: var(--fg);
+  max-width: 24ch;
+}
+
+/* ===================== CALLOUT ===================== */
+.callout {
+  margin: clamp(24px, 3vh, 36px) 0;
+  padding: clamp(20px, 2.5vw, 28px) clamp(24px, 3vw, 32px);
+  background: var(--fg-04);
+  border: 1px solid var(--fg-12);
+  border-left: 3px solid var(--coral);
+  border-radius: 6px;
+}
+.callout-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--lemon);
+  margin-bottom: 10px;
+}
+.callout p {
+  font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+  margin: 0;
+  color: var(--fg);
+  line-height: 1.55;
+}
+.callout--key { border-left-color: var(--lemon); }
+.callout--key .callout-label { color: var(--coral); }
+
+/* ===================== SOLUTION GRID ===================== */
+.solution-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(14px, 1.6vw, 20px);
+  margin: clamp(24px, 4vh, 40px) 0;
+  max-width: none;
+}
+.solution-card {
+  padding: clamp(20px, 2.4vw, 28px);
+  background: var(--fg-04);
+  border: 1px solid var(--fg-12);
+  border-radius: 12px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.solution-card:hover { border-color: rgba(253,100,55,0.4); background: var(--fg-06); }
+.solution-card-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--coral);
+  margin-bottom: 10px;
+}
+.solution-card h5 {
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  color: var(--fg);
+}
+.solution-card p {
+  font-size: clamp(0.88rem, 1vw, 0.98rem);
+  color: var(--fg-70);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ===================== USE-CASE CARDS ===================== */
+.use-cases {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  margin: clamp(28px, 4vh, 48px) 0;
+  max-width: none;
+}
+.use-card {
+  padding: clamp(24px, 2.8vw, 36px);
+  background: var(--fg-04);
+  border: 1px solid var(--fg-12);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.use-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--coral) 0%, var(--lemon) 100%);
+}
+.use-card-num {
+  font-size: clamp(2.4rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: clamp(14px, 2vh, 20px);
+  font-variant-numeric: tabular-nums;
+}
+.use-card-title {
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--fg);
+  margin-bottom: clamp(16px, 2.5vh, 22px);
+}
+.use-card-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 14px;
+  margin-bottom: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--fg-12);
+}
+.use-card-row:first-of-type { border-top: none; padding-top: 0; }
+.use-card-row .uc-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--coral);
+  padding-top: 2px;
+}
+.use-card-row .uc-text {
+  font-size: clamp(0.92rem, 1.05vw, 1rem);
+  line-height: 1.55;
+  color: var(--fg-85);
+}
+.use-card--wide { grid-column: 1 / -1; }
+
+/* ===================== PLAYBOOK TABLE ===================== */
+.playbook {
+  margin: clamp(28px, 4vh, 48px) 0;
+  max-width: none;
+  border: 1px solid var(--fg-12);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--fg-04);
+}
+.playbook table { width: 100%; border-collapse: collapse; }
+.playbook th {
+  background: var(--fg-06);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--lemon);
+  text-align: left;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--fg-12);
+}
+.playbook td {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--fg-12);
+  font-size: clamp(0.9rem, 1.05vw, 1rem);
+  line-height: 1.5;
+  vertical-align: top;
+  color: var(--fg-85);
+}
+.playbook tr:last-child td { border-bottom: none; }
+.playbook .phase {
+  white-space: nowrap;
+  font-weight: 700;
+  color: var(--fg);
+}
+.playbook .phase-num {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--coral);
+  display: block;
+  margin-bottom: 4px;
+}
+.playbook .days { white-space: nowrap; color: var(--coral); font-weight: 700; }
+
+/* ===================== PITFALLS ===================== */
+.pitfalls {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 28px);
+  margin: clamp(28px, 4vh, 48px) 0;
+  max-width: none;
+}
+.pitfall {
+  padding: clamp(24px, 2.8vw, 36px);
+  background: var(--fg-04);
+  border: 1px solid var(--fg-12);
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(20px, 3vw, 36px);
+  align-items: start;
+}
+.pitfall-num {
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+}
+.pitfall-body h4 {
+  font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: clamp(14px, 2vh, 20px);
+}
+.pitfall-block {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--fg-12);
+}
+.pitfall-block:first-of-type { border-top: none; padding-top: 0; }
+.pitfall-block .pb-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--coral);
+  margin-bottom: 6px;
+}
+.pitfall-block .pb-text {
+  font-size: clamp(0.92rem, 1.05vw, 1rem);
+  line-height: 1.6;
+  color: var(--fg-85);
+}
+.pitfall-block .pb-text em { color: var(--fg); font-style: italic; }
+
+/* ===================== YEAR ONE METRIC LIST ===================== */
+.metric-list { display: flex; flex-direction: column; gap: 0; margin: clamp(24px, 4vh, 40px) 0; max-width: none; }
+.metric {
+  display: grid;
+  grid-template-columns: clamp(220px, 26vw, 320px) 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(20px, 3vh, 28px) 0;
+  border-top: 1px solid var(--fg-12);
+}
+.metric:last-child { border-bottom: 1px solid var(--fg-12); }
+.metric-name {
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  line-height: 1.2;
+  color: var(--fg);
+}
+.metric-detail {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.6;
+  color: var(--fg-85);
+}
+.metric-detail .support {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.85em;
+  color: var(--fg-55);
+  font-style: italic;
+}
+
+/* ===================== CLOSE ===================== */
+.close {
+  padding: clamp(80px, 14vh, 160px) clamp(28px, 6vw, 96px);
+  border-top: 1px solid var(--fg-12);
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+.close-glow {
+  position: absolute;
+  top: -30%;
+  left: -20%;
+  width: 70vw;
+  height: 70vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(250,236,140,0.18) 0%, rgba(250,236,140,0) 60%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+.close-inner { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; }
+.close-statement {
+  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: -0.028em;
+  line-height: 1.02;
+  max-width: 18ch;
+  margin-bottom: clamp(28px, 4vh, 44px);
+}
+.close-body {
+  max-width: 56ch;
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--fg-85);
+  margin-bottom: clamp(36px, 5vh, 56px);
+}
+.close-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 28px;
+  background: linear-gradient(135deg, var(--coral) 0%, var(--lemon) 100%);
+  color: var(--black);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 8px;
+  border: none;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+}
+.close-cta:hover { border: none; }
+.close-cta .arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+.close-cta:hover .arrow { transform: translateX(4px); }
+
+.colophon {
+  margin-top: clamp(48px, 8vh, 80px);
+  padding-top: clamp(28px, 4vh, 36px);
+  border-top: 1px solid var(--fg-12);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--fg-55);
+  line-height: 1.6;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.colophon-meta { max-width: 50ch; }
+
+/* ===================== TABLE OF CONTENTS ===================== */
+.toc {
+  padding: clamp(48px, 7vw, 96px) clamp(28px, 6vw, 96px);
+  border-bottom: 1px solid var(--fg-12);
+}
+.toc-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--lemon);
+  margin-bottom: clamp(20px, 3vh, 32px);
+}
+.toc-title {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  margin-bottom: clamp(36px, 5vh, 56px);
+  max-width: 22ch;
+}
+.toc-list { display: flex; flex-direction: column; gap: 0; }
+.toc-row {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: clamp(16px, 2vw, 28px);
+  padding: clamp(20px, 3vh, 28px) 0;
+  border-top: 1px solid var(--fg-12);
+  align-items: baseline;
+  text-decoration: none;
+  color: var(--fg);
+  border-bottom: none;
+  transition: padding-left 0.2s;
+}
+.toc-row:hover { padding-left: 12px; }
+.toc-row:last-child { border-bottom: 1px solid var(--fg-12); }
+.toc-row .tnum {
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.toc-row .ttitle {
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.toc-row .tmeta {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-55);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ===================== INLINE SVG VISUALS ===================== */
+.viz {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: clamp(28px, 4vh, 48px) 0;
+}
+/* Explicit aspect-ratio per viz so the SVG's intrinsic size is always
+   resolvable in print, where height:auto on viewBox-only SVG can collapse. */
+.viz svg,
+.bar-chart svg,
+.hub-diagram svg,
+.workflow-strip svg,
+.timeline svg { display: block; width: 100%; height: auto; }
+.bar-chart svg     { aspect-ratio: 1100 / 280; }
+.hub-diagram svg   { aspect-ratio: 1100 / 140; }
+.workflow-strip svg{ aspect-ratio: 1100 / 110; }
+.timeline svg      { aspect-ratio: 1100 / 320; }
+
+/* Pitfall icon — sits above the number in the pitfall-num column. */
+.pitfall-num { display: flex; flex-direction: row; align-items: center; gap: 12px; }
+.pitfall-icon { display: block; width: 36px; height: 36px; opacity: 0.95; }
+
+/* Scorecard — replaces metric-list with paired before/after bars. */
+.scorecard { display: flex; flex-direction: column; gap: 0; max-width: none; margin: clamp(24px, 4vh, 40px) 0; }
+.score-row {
+  display: grid;
+  grid-template-columns: clamp(220px, 26vw, 320px) 1fr clamp(180px, 22vw, 260px);
+  gap: clamp(20px, 3vw, 36px);
+  padding: clamp(20px, 3vh, 26px) 0;
+  border-top: 1px solid var(--fg-12);
+  align-items: center;
+}
+.score-row:last-child { border-bottom: 1px solid var(--fg-12); }
+.score-name {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  line-height: 1.25;
+  color: var(--fg);
+}
+.score-bars { display: flex; flex-direction: column; gap: 10px; }
+.score-bar-row { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; }
+.score-bar-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.score-bar-label.before { color: var(--fg-55); }
+.score-bar-label.after { color: var(--coral); }
+.score-bar-track {
+  height: 14px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+}
+.score-bar-fill { height: 100%; border-radius: 7px; }
+.score-bar-fill.before { background: rgba(255,255,255,0.22); }
+.score-bar-fill.after { background: linear-gradient(90deg, var(--coral) 0%, var(--lemon) 100%); }
+.score-support {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--fg-55);
+  font-style: italic;
+}
+
+/* Workflow strip — 5 stages in a row, horizontal arrows between. */
+.workflow-strip { margin: clamp(24px, 4vh, 40px) 0; max-width: none; }
+
+/* Hub diagram — compressed horizontal flow into central hub. */
+.hub-diagram { margin: clamp(20px, 3vh, 32px) 0 clamp(16px, 2vh, 24px); max-width: none; }
+
+/* Bar chart — replaces three stat tiles with horizontal bar comparison. */
+.bar-chart { margin: clamp(36px, 5vh, 56px) 0; max-width: none; }
+
+/* Timeline — replaces playbook table with horizontal phase strip. */
+.timeline { margin: clamp(28px, 4vh, 48px) 0; max-width: none; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 900px) {
+  .cover-body { max-width: 100%; }
+  .cover-sub { max-width: 100%; }
+  .opener {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: clamp(48px, 8vh, 72px) clamp(20px, 5vw, 32px);
+    gap: clamp(20px, 3vh, 32px);
+  }
+  .opener-mark .ch-num { font-size: clamp(5.5rem, 22vw, 9rem); }
+  .stat-band, .use-cases, .solution-grid { grid-template-columns: 1fr; }
+  .pitfall { grid-template-columns: 1fr; gap: 16px; }
+  .metric { grid-template-columns: 1fr; gap: 8px; }
+  .topnav-inner { padding: 14px 20px; }
+  .topnav-meta { display: none; }
+  .topnav-meta.brand-meta { display: inline-block; }
+  .colophon { flex-direction: column; align-items: flex-start; }
+  .toc-row { grid-template-columns: 48px 1fr; }
+  .toc-row .tmeta { display: none; }
+  .use-card-row { grid-template-columns: 1fr; gap: 6px; }
+}
+
+/* ===================== PRINT ===================== */
+@media print {
+  /* Page sizing model: 11in × 8.5in landscape, zero @page margin.
+     Every full-page section has min-height: 8.4in so the dark
+     background fills the spread even when content is short.
+     box-sizing: border-box on everything to avoid padding overflow. */
+
+  html, body {
+    background: var(--black) !important;
+    color: var(--fg) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    font-size: 16px;
+  }
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-sizing: border-box;
+  }
+
+  /* Gradient text: re-assert every property so Chrome's print engine
+     keeps the background-clip:text effect. */
+  .grad-text, .grad {
+    background-image: linear-gradient(135deg, var(--coral) 0%, var(--coral-mid) 45%, var(--lemon) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  .book { max-width: none; margin: 0; }
+  .topnav, .close-cta { display: none; }
+  .cover-glow, .close-glow { display: none; }
+  a { border-bottom: none; color: inherit; }
+
+  /* ============ COVER ============ */
+  .cover {
+    min-height: 8.4in;
+    padding: 0.55in 0.75in;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-body { max-width: none; }
+  .cover-title { font-size: 4.4rem; line-height: 0.95; }
+  .cover-sub { font-size: 1.2rem; line-height: 1.55; max-width: 58ch; }
+  .cover-eyebrow { font-size: 0.85rem; }
+  .cover-foot { font-size: 0.78rem; }
+
+  /* ============ TOC ============ */
+  .toc {
+    min-height: 8.4in;
+    padding: 0.7in 0.8in;
+    page-break-after: always;
+  }
+  .toc-title { font-size: 2.4rem; }
+  .toc-row { padding: 0.18in 0; }
+  .tnum { font-size: 1.8rem; }
+  .ttitle { font-size: 1.2rem; }
+
+  /* ============ CHAPTER OPENER ============ */
+  /* Single-row grid (1fr) + align-items:center reliably centers
+     content vertically inside the 8.4in spread. */
+  .opener {
+    min-height: 8.4in;
+    padding: 0.6in 0.85in;
+    page-break-before: always;
+    page-break-inside: avoid;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    column-gap: 0.7in;
+  }
+  .opener-mark { display: flex; flex-direction: column; gap: 0.15in; }
+  /* Print fallback: background-clip:text on this very large glyph drops
+     out in Chrome's PDF rasterization (the cover title gradient works,
+     but the chapter numeral specifically renders transparent). Force
+     solid coral in print so the number is always visible. The cover
+     title and inline grad-text spans keep their gradients. */
+  .opener-mark .ch-num,
+  .opener-mark .ch-num.grad-text {
+    font-size: 11rem;
+    line-height: 0.82;
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    color: var(--coral) !important;
+    -webkit-text-fill-color: var(--coral) !important;
+    padding-bottom: 0;
+  }
+  .opener-mark .ch-label { font-size: 0.85rem; }
+  .opener .chapter-title { font-size: 3.2rem; line-height: 1.02; }
+  .opener .ch-kicker {
+    font-size: 1.2rem;
+    line-height: 1.45;
+    max-width: 46ch;
+    margin-top: 0.25in;
+  }
+
+  /* ============ BODY PAGE ============ */
+  /* Single column, centered measure ~7.2in (≈75ch). Each .page is at
+     least a full spread tall so the dark BG fills any short page.
+     Browser auto-paginates when content exceeds the page. */
+  .page {
+    min-height: 8.4in;
+    padding: 0.55in 0.75in;
+  }
+  .page--measure > * {
+    max-width: 7.2in;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .page--measure > p,
+  .page--measure > ul,
+  .page--measure > ol {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin-bottom: 0.18in;
+    orphans: 3;
+    widows: 3;
+  }
+  .page--measure > .lead {
+    font-size: 1.15rem;
+    margin-bottom: 0.25in;
+  }
+  .page--measure > h3 {
+    font-size: 1.4rem;
+    margin: 0.35in auto 0.15in;
+  }
+  .page--measure ul, .page--measure ol { padding-left: 1.2em; }
+  .page--measure li { margin-bottom: 0.08in; }
+
+  /* Block-level visual units — wider than the text measure but still
+     constrained, centered, with consistent breathing room. */
+  .page--measure > .stat-band,
+  .page--measure > .use-cases,
+  .page--measure > .solution-grid,
+  .page--measure > .pitfall,
+  .page--measure > .playbook,
+  .page--measure > .callout,
+  .page--measure > .pullquote,
+  .page--measure > .metric,
+  .page--measure > .full {
+    max-width: 9.3in;
+    margin: 0.3in auto;
+    break-inside: avoid;
+  }
+
+  .stat-band { grid-template-columns: repeat(3, 1fr); gap: 0.3in; }
+  .stat { padding: 0.22in; }
+  .stat-num { font-size: 2.8rem; line-height: 1; }
+  .stat-label { font-size: 0.95rem; line-height: 1.4; }
+
+  .use-cases { grid-template-columns: repeat(2, 1fr); gap: 0.25in; }
+  .use-card { padding: 0.25in; }
+  .use-card-num { font-size: 1.8rem; }
+  .use-card-pain, .use-card-solution, .use-card-outcome { font-size: 0.95rem; }
+
+  .solution-grid { grid-template-columns: repeat(2, 1fr); gap: 0.25in; }
+  .solution-card { padding: 0.25in; }
+
+  /* Switch .pitfalls flex column to block in print so individual pitfall
+     cards can paginate independently instead of being held together
+     atomically with the intro paragraph. */
+  .pitfalls { display: block; }
+  .pitfalls > .pitfall { margin-bottom: 0.18in; }
+  .pitfall { grid-template-columns: 60px 1fr; gap: 0.25in; padding: 0.15in 0; }
+  .pitfall-num { font-size: 1.9rem; }
+
+  .playbook { font-size: 0.95rem; }
+  .playbook th, .playbook td { padding: 0.14in 0.18in; }
+
+  .pullquote { padding: 0.25in 0.4in; }
+  .pullquote-mark { font-size: 2.5rem; }
+  .pullquote-body { font-size: 1.45rem; line-height: 1.35; }
+
+  .callout { padding: 0.22in 0.28in; }
+  .callout-label { font-size: 0.78rem; }
+
+  .metric { grid-template-columns: 1fr 1fr; gap: 0.4in; }
+
+  .solution-card, .use-card, .stat, .metric, .toc-row,
+  .pullquote, .callout, .playbook { break-inside: avoid; }
+  .pullquote { break-before: avoid; }
+  /* Grid containers intentionally allowed to break across pages so their
+     children flow into preceding content rather than being held atomic
+     by inheriting `break-inside: avoid` from the `.full` rule above. */
+  .pitfalls, .pitfalls.full, .page--measure > .pitfalls.full,
+  .use-cases, .use-cases.full, .page--measure > .use-cases.full { break-inside: auto !important; }
+  .pitfall { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+
+  /* ============ INLINE VISUALS — print sizing ============ */
+  .viz, .bar-chart, .hub-diagram, .workflow-strip, .timeline, .scorecard {
+    max-width: 9.3in !important;
+    width: 9.3in;
+    margin: 0.25in auto !important;
+    break-inside: avoid;
+  }
+  /* Timeline is the tallest viz — tighten so Ch4 body fits on a single page */
+  .timeline { margin: 0.05in auto !important; }
+  .timeline svg { aspect-ratio: 1100 / 260; }
+  .scorecard .score-row { padding: 0.12in 0; }
+  .scorecard .score-name { font-size: 1rem; }
+  .scorecard .score-support { font-size: 0.78rem; }
+  .pitfall-icon { width: 28px; height: 28px; }
+
+  /* ============ CLOSE ============ */
+  .close {
+    min-height: 8.4in;
+    padding: 0.7in 0.85in;
+    page-break-before: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .close-statement { font-size: 2.4rem; line-height: 1.15; max-width: 22ch; }
+  .colophon { margin-top: 0.5in; font-size: 0.85rem; }
+}
+
+/* Landscape letter for PDF export — gives the magazine-style layout
+   enough horizontal room for two-column body, card grids, and the
+   editorial chapter openers without awkward page breaks. */
+@page {
+  size: 11in 8.5in;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="book">
+
+<!-- ===================== COVER ===================== -->
+<section class="cover" id="cover">
+  <div class="cover-glow"></div>
+  <div class="cover-top">
+    <svg class="brand-logo brand-logo--lg" viewBox="0 0 251 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Vailent">
+      <path d="M69 23.3885C69 29.6782 63.967 34.777 57.7585 34.777C51.5499 34.777 46.5169 29.6782 46.5169 23.3885C46.5169 17.0988 51.5499 12 57.7585 12C63.967 12 69 17.0988 69 23.3885Z" fill="url(#coverMark1)"/>
+      <path d="M22.2415 12C28.4501 12 33.4831 17.0988 33.4831 23.3885C33.4831 24.0405 33.4288 24.6796 33.3249 25.3016C31.5414 37.1393 30.2383 40.4851 44.5437 45.9823C48.9834 47.9812 51.4498 52.2896 51.4498 56.4768C51.4498 62.4737 46.5169 68.4705 38.6243 67.9708C33.1981 66.9713 29.2517 63.4731 28.7585 56.9765C28.7585 55.6443 28.9415 54.3272 29.2504 53.0313C31.9809 41.5732 29.6427 37.8139 19.0155 34.3009C14.3792 32.8963 11 28.5423 11 23.3885C11 17.0988 16.033 12 22.2415 12Z" fill="url(#coverMark2)"/>
+      <path d="M225.675 35.2676H220.523V31.0676H225.675V23.0596H230.267V31.0676H237.491V35.2676H230.267V52.1236C230.267 53.3182 230.491 54.1769 230.939 54.6996C231.425 55.1849 232.246 55.4276 233.403 55.4276H238.387V59.6276H233.123C230.435 59.6276 228.513 59.0302 227.355 57.8356C226.235 56.6409 225.675 54.7556 225.675 52.1796V35.2676Z" fill="#fff"/>
+      <path d="M207.221 30.7314C210.693 30.7314 213.474 31.7768 215.565 33.8674C217.693 35.9581 218.757 39.2434 218.757 43.7234V59.6274H214.165V44.0034C214.165 41.0541 213.493 38.8141 212.149 37.2834C210.842 35.7154 208.938 34.9314 206.437 34.9314C203.749 34.9314 201.639 35.8648 200.109 37.7314C198.578 39.5981 197.813 42.1368 197.813 45.3474V59.6274H193.221V31.0674H197.197L197.813 34.9314C199.978 32.1314 203.114 30.7314 207.221 30.7314Z" fill="#fff"/>
+      <path d="M161.717 45.3474C161.717 42.4354 162.277 39.8781 163.397 37.6754C164.554 35.4728 166.159 33.7741 168.213 32.5794C170.266 31.3474 172.618 30.7314 175.269 30.7314C177.882 30.7314 180.197 31.2728 182.213 32.3554C184.229 33.4381 185.815 35.0061 186.973 37.0594C188.13 39.1128 188.746 41.5208 188.821 44.2834C188.821 44.6941 188.783 45.3474 188.709 46.2434H166.533V46.6354C166.607 49.4354 167.466 51.6754 169.109 53.3554C170.751 55.0354 172.898 55.8754 175.549 55.8754C177.602 55.8754 179.338 55.3714 180.757 54.3634C182.213 53.3181 183.183 51.8808 183.669 50.0514H188.317C187.757 52.9634 186.357 55.3528 184.117 57.2194C181.877 59.0488 179.133 59.9634 175.885 59.9634C173.047 59.9634 170.565 59.3661 168.437 58.1714C166.309 56.9394 164.647 55.2221 163.453 53.0194C162.295 50.7794 161.717 48.2221 161.717 45.3474ZM184.061 42.4354C183.837 40.0088 182.922 38.1234 181.317 36.7794C179.749 35.4354 177.751 34.7634 175.325 34.7634C173.159 34.7634 171.255 35.4728 169.613 36.8914C167.97 38.3101 167.037 40.1581 166.813 42.4354H184.061Z" fill="#fff"/>
+      <path d="M152.683 20.4277H157.275V59.6277H152.683V20.4277Z" fill="#fff"/>
+      <path d="M144.936 20.0361C145.794 20.0361 146.504 20.3161 147.064 20.8761C147.624 21.4361 147.904 22.1455 147.904 23.0041C147.904 23.8628 147.624 24.5721 147.064 25.1321C146.504 25.6921 145.794 25.9721 144.936 25.9721C144.077 25.9721 143.368 25.6921 142.808 25.1321C142.248 24.5721 141.968 23.8628 141.968 23.0041C141.968 22.1455 142.248 21.4361 142.808 20.8761C143.368 20.3161 144.077 20.0361 144.936 20.0361ZM142.64 31.0681H147.232V59.6281H142.64V31.0681Z" fill="#fff"/>
+      <path d="M139.95 55.4274V59.6274H137.43C135.6 59.6274 134.294 59.2541 133.51 58.5074C132.726 57.7608 132.315 56.6594 132.278 55.2034C130.075 58.3768 126.883 59.9634 122.702 59.9634C119.528 59.9634 116.971 59.2168 115.03 57.7234C113.126 56.2301 112.174 54.1954 112.174 51.6194C112.174 48.7448 113.144 46.5421 115.086 45.0114C117.064 43.4808 119.92 42.7154 123.654 42.7154H132.054V40.7554C132.054 38.8888 131.419 37.4328 130.15 36.3874C128.918 35.3421 127.182 34.8194 124.942 34.8194C122.963 34.8194 121.32 35.2674 120.014 36.1634C118.744 37.0221 117.96 38.1794 117.662 39.6354H113.07C113.406 36.8354 114.638 34.6514 116.766 33.0834C118.931 31.5154 121.731 30.7314 125.166 30.7314C128.824 30.7314 131.643 31.6274 133.622 33.4194C135.638 35.1741 136.646 37.7128 136.646 41.0354V53.3554C136.646 54.7368 137.280 55.4274 138.55 55.4274H139.95ZM132.054 46.5794H123.206C118.95 46.5794 116.822 48.1661 116.822 51.3394C116.822 52.7581 117.382 53.8968 118.502 54.7554C119.622 55.6141 121.134 56.0434 123.038 56.0434C125.838 56.0434 128.04 55.3154 129.646 53.8594C131.251 52.3661 132.054 50.4061 132.054 47.9794V46.5794Z" fill="#fff"/>
+      <path d="M80 20.4277H85.152L97.136 53.8597L109.064 20.4277H114.104L99.992 59.6277H94.112L80 20.4277Z" fill="#fff"/>
+      <defs>
+        <linearGradient id="coverMark1" x1="14.9658" y1="12" x2="79.3605" y2="29.1906" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FAEC8C"/><stop offset="1" stop-color="#FD6437"/>
+        </linearGradient>
+        <linearGradient id="coverMark2" x1="14.9658" y1="12" x2="79.3605" y2="29.1906" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FAEC8C"/><stop offset="1" stop-color="#FD6437"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <span style="font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-55); font-weight: 700;">A Playbook from <span style="color: var(--lemon);">Vailent</span> &middot; Material Operations AI</span>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">A Playbook from Vailent</div>
+    <h1 class="cover-title">From <em class="grad-text">Spreadsheets</em><br>to <em class="grad-text">Signals.</em></h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">The next twelve months will decide which commercial operations in chemical, polymer, elastomer, and rubber run on spreadsheets &mdash; and which run on signal. A working framework for the leaders moving first.</p>
+  </div>
+
+  <div class="cover-foot">
+    <span class="cat">Material Operations AI</span>
+    <span>Edition 01 &middot; 2026</span>
+    <span class="url">vailent.com</span>
+  </div>
+</section>
+
+<!-- ===================== TOC ===================== -->
+<section class="toc" id="contents">
+  <div class="toc-eyebrow">Contents</div>
+  <h2 class="toc-title">A short, sharp read for one sitting.</h2>
+  <div class="toc-list">
+    <a href="#ch1" class="toc-row">
+      <span class="tnum grad-text">01</span>
+      <span class="ttitle">The Moment</span>
+      <span class="tmeta">Why now</span>
+    </a>
+    <a href="#ch2" class="toc-row">
+      <span class="tnum grad-text">02</span>
+      <span class="ttitle">What &ldquo;AI in Commercial Ops&rdquo; Actually Means</span>
+      <span class="tmeta">Foundations</span>
+    </a>
+    <a href="#ch3" class="toc-row">
+      <span class="tnum grad-text">03</span>
+      <span class="ttitle">Five High-ROI Use Cases for Commercial Leaders</span>
+      <span class="tmeta">Where to point it</span>
+    </a>
+    <a href="#ch4" class="toc-row">
+      <span class="tnum grad-text">04</span>
+      <span class="ttitle">The 90-Day Adoption Playbook</span>
+      <span class="tmeta">How to start</span>
+    </a>
+    <a href="#ch5" class="toc-row">
+      <span class="tnum grad-text">05</span>
+      <span class="ttitle">Common Pitfalls</span>
+      <span class="tmeta">What derails it</span>
+    </a>
+    <a href="#ch6" class="toc-row">
+      <span class="tnum grad-text">06</span>
+      <span class="ttitle">What Year One Looks Like</span>
+      <span class="tmeta">The scorecard</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== CHAPTER 1 ===================== -->
+<section class="opener" id="ch1">
+  <div class="opener-mark">
+    <div class="ch-label">Chapter One</div>
+    <div class="ch-num grad-text">01</div>
+    <div class="ch-rule"></div>
+  </div>
+  <div class="opener-body">
+    <h2 class="chapter-title">The Moment.</h2>
+    <p class="ch-kicker">Why commercial leaders at material companies cannot sit out AI in 2026, and why the bottleneck is not the technology.</p>
+  </div>
+</section>
+
+<section class="page page--measure">
+  <p>You already know the headline. In every industry adjacent to yours (software, financial services, logistics, even consumer packaged goods), AI has moved from a curiosity on the CEO's desk to a line item on the commercial team's roadmap. For a long time, material industries were the safe place to wait it out. Specialty chemistry, polymer formulation, elastomer compounding, rubber processing. These are technical businesses with long sales cycles, deeply embedded customer relationships, and operating systems that have run on Excel and email for two decades. Nothing about that environment screams "early adopter."</p>
+
+  <p>That window is closing faster than the trade press suggests, and it is closing from the buyer side first. ICIS research on chemical distribution puts numbers behind what every commercial leader has already noticed in their own pipeline.</p>
+
+  <div class="bar-chart full">
+    <svg viewBox="0 0 1100 340" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three buyer-behavior statistics shown as horizontal bars: 85, 82, and 76 percent">
+      <defs>
+        <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#FD6437"/>
+          <stop offset="55%" stop-color="#FF8856"/>
+          <stop offset="100%" stop-color="#FAEC8C"/>
+        </linearGradient>
+      </defs>
+      <!-- Row 1: 85% -->
+      <text x="0" y="32" fill="rgba(255,255,255,0.85)" font-size="20" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Chemical buyers preferring digital channels for reordering</text>
+      <rect x="0" y="50" width="990" height="38" fill="rgba(255,255,255,0.06)" rx="4"/>
+      <rect x="0" y="50" width="841.5" height="38" fill="url(#barGrad)" rx="4"/>
+      <text x="858" y="80" fill="#FAEC8C" font-size="34" font-weight="800" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-variant-numeric="tabular-nums">85%</text>
+      <!-- Row 2: 82% -->
+      <text x="0" y="148" fill="rgba(255,255,255,0.85)" font-size="20" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Specialty customers willing to adopt supplier digital platforms</text>
+      <rect x="0" y="166" width="990" height="38" fill="rgba(255,255,255,0.06)" rx="4"/>
+      <rect x="0" y="166" width="811.8" height="38" fill="url(#barGrad)" rx="4"/>
+      <text x="828" y="196" fill="#FAEC8C" font-size="34" font-weight="800" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-variant-numeric="tabular-nums">82%</text>
+      <!-- Row 3: 76% -->
+      <text x="0" y="264" fill="rgba(255,255,255,0.85)" font-size="20" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Principals expecting to increase distributor reliance (next 3 years)</text>
+      <rect x="0" y="282" width="990" height="38" fill="rgba(255,255,255,0.06)" rx="4"/>
+      <rect x="0" y="282" width="752.4" height="38" fill="url(#barGrad)" rx="4"/>
+      <text x="768" y="312" fill="#FAEC8C" font-size="34" font-weight="800" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-variant-numeric="tabular-nums">76%</text>
+    </svg>
+  </div>
+
+  <p>Buyers are not waiting for the industry to digitize. They are choosing the suppliers and distributors that already have.</p>
+
+  <div class="callout callout--key">
+    <div class="callout-label">The Shift in One Sentence</div>
+    <p>Your buyers' purchasing behavior has already changed. The question is whether your commercial operation has changed with it, or whether the change is showing up in your win-rate data first.</p>
+  </div>
+
+  <p>The pressure on the cost side is just as real. McKinsey's analysis of digitization in chemical distribution finds that cost-to-serve can fall 15% to 50% through workflow digitization and AI-assisted commercial operations. A VP of Commercial Excellence looking at a spreadsheet-driven team carrying 5% to 10% gross margins on commodity products and 25% to 40% on specialty cannot ignore a structural cost line that large. The reps cannot work harder. The pricing analysts cannot version-control more spreadsheets. The path forward is a different operating system, not a heavier one.</p>
+
+  <p>Here is the harder reality. AI adoption in commercial operations is not a "the CEO decided" decision the way an enterprise resource planning, or ERP, swap is. It is a function-level decision &mdash; yours. You own the quoting cycle. You own pricing governance. You own pipeline visibility and key-account growth. The same way the VP of Sales owned the rollout of customer relationship management software, or CRM, in the 2010s, the VP of Commercial Excellence owns the rollout of AI in commercial operations in 2026. The bottleneck on AI adoption inside your function is not the technology. It is whether the person reading this page decides to move.</p>
+
+  <div class="pullquote">
+    <span class="pullquote-mark grad-text">&ldquo;</span>
+    <div class="pullquote-body">The VP of Commercial Excellence is simultaneously the buyer and the bottleneck for AI adoption inside their function.</div>
+  </div>
+
+  <p>This Playbook is written for that decision. Not a vendor pitch &mdash; a framework you can take into your next leadership team meeting: what AI actually means for commercial operations, the five highest-return places to point it first, a 90-day path to a first proof point, and the pitfalls that derail most adoption programs.</p>
+</section>
+
+<!-- ===================== CHAPTER 2 ===================== -->
+<section class="opener" id="ch2">
+  <div class="opener-mark">
+    <div class="ch-label">Chapter Two</div>
+    <div class="ch-num grad-text">02</div>
+    <div class="ch-rule"></div>
+  </div>
+  <div class="opener-body">
+    <h2 class="chapter-title">What &ldquo;AI in Commercial Ops&rdquo; Actually Means.</h2>
+    <p class="ch-kicker">Strip away the marketing language. AI in a material-industry commercial function comes down to a small number of concrete things.</p>
+  </div>
+</section>
+
+<section class="page page--measure">
+  <p>It is not a chatbot. It is not a content generator. It is not a science-fiction agent that runs your business autonomously. It is a set of capabilities that sit on top of the data your team already produces (quotes, orders, technical data sheets, or TDSs; certificates of analysis, or COAs; safety data sheets, or SDSs; CRM notes; ERP records) and removes the manual labor that currently turns that data into a usable commercial answer.</p>
+
+  <p>In plain terms, AI in commercial operations means five things, and you can evaluate any vendor by whether their product delivers them:</p>
+
+  <ul>
+    <li><strong>Faster quoting.</strong> Pulling product specifications, pricing rules, freight, and margin guardrails into a quote that used to take a rep hours to assemble.</li>
+    <li><strong>Pricing governance.</strong> Enforcing pricing policy across thousands of customer-by-stock-keeping-unit combinations without the rep having to remember a single rule.</li>
+    <li><strong>Pipeline and key-account visibility.</strong> A real view of what is moving, what is stuck, and which accounts are quietly under-bought relative to their potential.</li>
+    <li><strong>Customer onboarding.</strong> Compressing the know-your-customer, or KYC, checks, credit reviews, and compliance verification that today turn a new buyer into a two-week waiting game.</li>
+    <li><strong>Document and data orchestration.</strong> Putting the COAs, TDSs, and SDSs your buyers ask for into reach the moment they ask, in the format they need.</li>
+  </ul>
+
+  <p>None of that is theoretical. All of it is being done today by software the same way payroll or accounts payable are done by software, with a human in the loop where judgment matters, and automation where it does not. The reason this is now a category-defining moment is that large language models, or LLMs, have made it possible to do this on top of the messy, unstructured data that material industries actually run on. Specifications written in PDF. Pricing rules scattered across spreadsheets. Customer notes living in a sales rep's inbox. The previous generation of commercial software needed clean, structured data and almost no material company had any. The current generation does not.</p>
+
+  <h3 class="section-title">The Four Vailent Solution Areas</h3>
+
+  <p>Vailent builds against four solution areas that map directly to the list above. The framing matters less than the principle: an AI commercial stack should be evaluated by whether it covers those four areas, not by how many features the vendor demos. If a vendor can show all four working together on your data, you have something. If they can show one, you have a feature, not a platform.</p>
+
+  <div class="hub-diagram full">
+    <svg viewBox="0 0 1100 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four solution areas — TradePass, Catalog, DealFlow, Workflows — connect into Material Operations AI">
+      <defs>
+        <linearGradient id="hubGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#FD6437"/>
+          <stop offset="100%" stop-color="#FAEC8C"/>
+        </linearGradient>
+      </defs>
+      <!-- Four source pills -->
+      <g>
+        <rect x="10" y="50" width="130" height="40" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(253,100,55,0.45)" stroke-width="1.5"/>
+        <text x="75" y="75" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">TradePass</text>
+      </g>
+      <g>
+        <rect x="160" y="50" width="130" height="40" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(253,100,55,0.45)" stroke-width="1.5"/>
+        <text x="225" y="75" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Catalog</text>
+      </g>
+      <g>
+        <rect x="310" y="50" width="130" height="40" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(253,100,55,0.45)" stroke-width="1.5"/>
+        <text x="375" y="75" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">DealFlow</text>
+      </g>
+      <g>
+        <rect x="460" y="50" width="130" height="40" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(253,100,55,0.45)" stroke-width="1.5"/>
+        <text x="525" y="75" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Workflows</text>
+      </g>
+      <!-- Connector + arrow into hub -->
+      <line x1="600" y1="70" x2="690" y2="70" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-dasharray="5 4"/>
+      <polygon points="694,70 684,65 684,75" fill="rgba(255,255,255,0.7)"/>
+      <!-- Hub -->
+      <rect x="710" y="38" width="380" height="64" rx="32" fill="url(#hubGrad)"/>
+      <text x="900" y="76" fill="#1A1A1A" font-size="20" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Material Operations AI</text>
+    </svg>
+  </div>
+
+  <div class="solution-grid full">
+    <div class="solution-card">
+      <div class="solution-card-tag">TradePass</div>
+      <h5>Customer Onboarding</h5>
+      <p>KYC, credit, compliance, and account setup compressed from weeks to a single session.</p>
+    </div>
+    <div class="solution-card">
+      <div class="solution-card-tag">Catalog</div>
+      <h5>Material Management</h5>
+      <p>Product specs, TDSs, COAs, SDSs, and pricing rules in one governed place.</p>
+    </div>
+    <div class="solution-card">
+      <div class="solution-card-tag">DealFlow</div>
+      <h5>Commercial Activity</h5>
+      <p>Quoting, pipeline, key-account expansion, and rep productivity.</p>
+    </div>
+    <div class="solution-card">
+      <div class="solution-card-tag">Workflows</div>
+      <h5>The Connective Tissue</h5>
+      <p>The layer that lets the three areas above talk to your ERP and to each other without manual handoffs.</p>
+    </div>
+  </div>
+
+  <p>The category is starting to acquire a name. Vailent uses <strong>Material Operations AI</strong> to describe the intersection: AI applied to the specific operating reality of companies that make, distribute, or formulate physical material. That framing matters because horizontal AI vendors will tell you their tools work for any industry. They do not. The data shapes, the regulatory constraints, the document burden, and the buying behavior in a material industry are different enough that a horizontal product will solve 30% of your problem and leave the rest to consulting hours.</p>
+</section>
+
+<!-- ===================== CHAPTER 3 ===================== -->
+<section class="opener" id="ch3">
+  <div class="opener-mark">
+    <div class="ch-label">Chapter Three</div>
+    <div class="ch-num grad-text">03</div>
+    <div class="ch-rule"></div>
+  </div>
+  <div class="opener-body">
+    <h2 class="chapter-title">Five High-ROI Use Cases for Commercial Leaders.</h2>
+    <p class="ch-kicker">Ordered by speed-to-proof, not by ultimate value. Pick one. Prove it. Then expand.</p>
+  </div>
+</section>
+
+<section class="page page--measure">
+  <p>If you are going to move on AI in the next twelve months, here is where to point it first. The fastest measurable win is quoting cycle time. The largest long-term win is key-account expansion. Either way, the principle holds: pick one, prove it, then expand.</p>
+
+  <div class="workflow-strip full">
+    <svg viewBox="0 0 1100 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five-stage commercial workflow: Quote, Govern, Forecast, Onboard, Expand">
+      <defs>
+        <linearGradient id="stripGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#FD6437"/>
+          <stop offset="100%" stop-color="#FAEC8C"/>
+        </linearGradient>
+      </defs>
+      <!-- Track line behind the stages -->
+      <line x1="80" y1="40" x2="1020" y2="40" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+      <!-- 5 stage circles + labels. Centers at x=110,330,550,770,990 -->
+      <g>
+        <circle cx="110" cy="40" r="22" fill="url(#stripGrad)"/>
+        <text x="110" y="46" fill="#1A1A1A" font-size="16" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">01</text>
+        <text x="110" y="86" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Quote</text>
+        <text x="110" y="104" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Cycle time</text>
+      </g>
+      <g>
+        <circle cx="330" cy="40" r="22" fill="url(#stripGrad)"/>
+        <text x="330" y="46" fill="#1A1A1A" font-size="16" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">02</text>
+        <text x="330" y="86" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Govern</text>
+        <text x="330" y="104" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Pricing policy</text>
+      </g>
+      <g>
+        <circle cx="550" cy="40" r="22" fill="url(#stripGrad)"/>
+        <text x="550" y="46" fill="#1A1A1A" font-size="16" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">03</text>
+        <text x="550" y="86" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Forecast</text>
+        <text x="550" y="104" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Pipeline truth</text>
+      </g>
+      <g>
+        <circle cx="770" cy="40" r="22" fill="url(#stripGrad)"/>
+        <text x="770" y="46" fill="#1A1A1A" font-size="16" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">04</text>
+        <text x="770" y="86" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Onboard</text>
+        <text x="770" y="104" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">First order</text>
+      </g>
+      <g>
+        <circle cx="990" cy="40" r="22" fill="url(#stripGrad)"/>
+        <text x="990" y="46" fill="#1A1A1A" font-size="16" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">05</text>
+        <text x="990" y="86" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Expand</text>
+        <text x="990" y="104" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Key accounts</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="use-cases full">
+    <div class="use-card">
+      <div class="use-card-num grad-text">01</div>
+      <div class="use-card-title">Compress the Quoting Cycle</div>
+      <div class="use-card-row"><div class="uc-label">Pain</div><div class="uc-text">Quoting in chemical distribution is a seven-step manual process. A request that should take five minutes routinely takes hours, sometimes days. Reps re-derive freight, dig up margin floors, and hand-key specs.</div></div>
+      <div class="use-card-row"><div class="uc-label">Solution</div><div class="uc-text">AI pulls customer history, SKU rules, pricing guardrails, freight, and product documents into a draft quote the rep edits rather than authors.</div></div>
+      <div class="use-card-row"><div class="uc-label">Outcome</div><div class="uc-text">Quote turnaround compressed from hours to minutes. Rep capacity reclaimed for higher-value selling. Win-rate lift tracks closely to first-quote speed.</div></div>
+    </div>
+
+    <div class="use-card">
+      <div class="use-card-num grad-text">02</div>
+      <div class="use-card-title">Govern Pricing at Scale</div>
+      <div class="use-card-row"><div class="uc-label">Pain</div><div class="uc-text">500 customers by 1,000 stock-keeping units is half a million pricing scenarios. Most live in spreadsheets with no version control, no audit trail, no enforcement. Margin erodes one quote at a time.</div></div>
+      <div class="use-card-row"><div class="uc-label">Solution</div><div class="uc-text">AI enforces pricing policy at the moment of quote, flags out-of-policy deals before they leave the rep's screen, surfaces margin drift across customers and segments.</div></div>
+      <div class="use-card-row"><div class="uc-label">Outcome</div><div class="uc-text">Recovery of margin that today bleeds out through inconsistent enforcement. A defensible pricing process the CFO can actually audit.</div></div>
+    </div>
+
+    <div class="use-card">
+      <div class="use-card-num grad-text">03</div>
+      <div class="use-card-title">Bring Pipeline Out of the Spreadsheet</div>
+      <div class="use-card-row"><div class="uc-label">Pain</div><div class="uc-text">Roughly 40% of chemical sales reps still run their pipeline in spreadsheets and email. Many companies have no CRM in real operational use. Forecast accuracy is whatever the VP can talk reps into on Friday.</div></div>
+      <div class="use-card-row"><div class="uc-label">Solution</div><div class="uc-text">AI captures pipeline activity automatically from email and quoting, classifies stage, produces a forecast view without depending on rep data hygiene.</div></div>
+      <div class="use-card-row"><div class="uc-label">Outcome</div><div class="uc-text">A pipeline that reflects reality rather than a rep's best guess. Forecast credibility with the CFO. A leading indicator the VP can manage to.</div></div>
+    </div>
+
+    <div class="use-card">
+      <div class="use-card-num grad-text">04</div>
+      <div class="use-card-title">Shrink Customer Onboarding</div>
+      <div class="use-card-row"><div class="uc-label">Pain</div><div class="uc-text">KYC, anti-money-laundering checks, credit reviews, and compliance verification turn a willing new buyer into a two-week wait. In a market where 85% of buyers prefer digital, that delay is churn risk before the relationship begins.</div></div>
+      <div class="use-card-row"><div class="uc-label">Solution</div><div class="uc-text">AI orchestrates document collection, compliance lookups, and approval routing in parallel rather than sequentially.</div></div>
+      <div class="use-card-row"><div class="uc-label">Outcome</div><div class="uc-text">New-account time-to-first-order shrunk by 60%+ in the realistic case. A buyer who experiences the relationship as fast from day one.</div></div>
+    </div>
+
+    <div class="use-card use-card--wide">
+      <div class="use-card-num grad-text">05</div>
+      <div class="use-card-title">Find the Untouched Revenue Inside Your Key Accounts</div>
+      <div class="use-card-row"><div class="uc-label">Pain</div><div class="uc-text">Every commercial leader knows the largest source of new revenue is the customer that already buys. Every commercial leader also knows the rep does not have time to systematically work the catalog against the customer's actual application portfolio. The opportunity stays invisible.</div></div>
+      <div class="use-card-row"><div class="uc-label">Solution</div><div class="uc-text">AI matches the customer's buying pattern, technical profile, and adjacent industry usage against the catalog to surface specific cross-sell openings &mdash; the SKUs the customer is not yet buying but should be, with the technical reason attached.</div></div>
+      <div class="use-card-row"><div class="uc-label">Outcome</div><div class="uc-text">A named, prioritized list of expansion plays the rep can work in a quarter. The single largest commercial-AI lift in specialty distribution, where rep coverage is the binding constraint on growth.</div></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">The Discipline</div>
+    <p>The mistake is buying the platform and trying to roll out five use cases at once. The discipline is to pick the one where your data is cleanest, your pain is sharpest, and your team is most ready, and drive it to a measurable result inside a quarter.</p>
+  </div>
+</section>
+
+<!-- ===================== CHAPTER 4 ===================== -->
+<section class="opener" id="ch4">
+  <div class="opener-mark">
+    <div class="ch-label">Chapter Four</div>
+    <div class="ch-num grad-text">04</div>
+    <div class="ch-rule"></div>
+  </div>
+  <div class="opener-body">
+    <h2 class="chapter-title">The 90-Day Adoption Playbook.</h2>
+    <p class="ch-kicker">Run it against a single workflow, in shadow mode, with a named milestone at the end of each phase. Prove one thing. Then scale.</p>
+  </div>
+</section>
+
+<section class="page page--measure">
+  <p>Most AI adoption programs in material industries fail the same way enterprise software programs failed in the 2000s: too much scope, too long a runway, too many stakeholders, and no measurable outcome until twelve months in &mdash; at which point the executive sponsor has moved on. The fix is structural.</p>
+
+  <div class="timeline full">
+    <svg viewBox="0 0 1100 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ninety-day adoption timeline with five phases: Assess, Pick One Workflow, Shadow Mode, Measure, Scale">
+      <defs>
+        <linearGradient id="tlGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#FD6437"/>
+          <stop offset="100%" stop-color="#FAEC8C"/>
+        </linearGradient>
+      </defs>
+      <!-- 90-day track. x range 50..1050 maps to days 0..90. -->
+      <line x1="20" y1="100" x2="1077" y2="100" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+      <!-- Day endpoint markers -->
+      <text x="20" y="135" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="700" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, sans-serif" letter-spacing="2">DAY 0</text>
+      <text x="1077" y="135" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="700" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, sans-serif" letter-spacing="2">DAY 90</text>
+      <!-- Phase segments. Day 1-15 → x 61-217, 15-30 → 217-383, 30-60 → 383-717, 60-75 → 717-883, 75-90 → 883-1050.
+           Segment centers: 139, 300, 550, 800, 967. -->
+      <g>
+        <rect x="20" y="93" width="205" height="14" fill="url(#tlGrad)" rx="7" opacity="0.95"/>
+        <circle cx="122.5" cy="100" r="13" fill="#1A1A1A" stroke="url(#tlGrad)" stroke-width="2.5"/>
+        <text x="122.5" y="104" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">01</text>
+        <text x="122.5" y="56" fill="#FD6437" font-size="10" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" letter-spacing="2">DAYS 1&ndash;15</text>
+        <text x="122.5" y="78" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Assess</text>
+      </g>
+      <g>
+        <rect x="233" y="93" width="205" height="14" fill="url(#tlGrad)" rx="7" opacity="0.95"/>
+        <circle cx="335.5" cy="100" r="13" fill="#1A1A1A" stroke="url(#tlGrad)" stroke-width="2.5"/>
+        <text x="335.5" y="104" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">02</text>
+        <text x="335.5" y="56" fill="#FD6437" font-size="10" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" letter-spacing="2">DAYS 15&ndash;30</text>
+        <text x="335.5" y="78" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Pick One Workflow</text>
+      </g>
+      <g>
+        <rect x="446" y="93" width="205" height="14" fill="url(#tlGrad)" rx="7" opacity="0.95"/>
+        <circle cx="548.5" cy="100" r="13" fill="#1A1A1A" stroke="url(#tlGrad)" stroke-width="2.5"/>
+        <text x="548.5" y="104" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">03</text>
+        <text x="548.5" y="56" fill="#FD6437" font-size="10" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" letter-spacing="2">DAYS 30&ndash;60</text>
+        <text x="548.5" y="78" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Run Shadow Mode</text>
+      </g>
+      <g>
+        <rect x="659" y="93" width="205" height="14" fill="url(#tlGrad)" rx="7" opacity="0.95"/>
+        <circle cx="761.5" cy="100" r="13" fill="#1A1A1A" stroke="url(#tlGrad)" stroke-width="2.5"/>
+        <text x="761.5" y="104" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">04</text>
+        <text x="761.5" y="56" fill="#FD6437" font-size="10" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" letter-spacing="2">DAYS 60&ndash;75</text>
+        <text x="761.5" y="78" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Measure</text>
+      </g>
+      <g>
+        <rect x="872" y="93" width="205" height="14" fill="url(#tlGrad)" rx="7" opacity="0.95"/>
+        <circle cx="974.5" cy="100" r="13" fill="#1A1A1A" stroke="url(#tlGrad)" stroke-width="2.5"/>
+        <text x="974.5" y="104" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">05</text>
+        <text x="974.5" y="56" fill="#FD6437" font-size="10" font-weight="800" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" letter-spacing="2">DAYS 75&ndash;90</text>
+        <text x="974.5" y="78" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Scale</text>
+      </g>
+      <!-- Milestone cards evenly distributed: w=205, gap=8, x=20,233,446,659,872. -->
+      <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+        <rect x="20" y="160" width="205" height="140" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)"/>
+        <text x="35" y="184" fill="#FAEC8C" font-size="9" font-weight="800" letter-spacing="2">MILESTONE</text>
+        <text x="35" y="208" fill="#FFFFFF" font-size="11" font-weight="600">
+          <tspan x="35" dy="0">Baseline document</tspan>
+          <tspan x="35" dy="15">signed by VP and one</tspan>
+          <tspan x="35" dy="15">operating sponsor.</tspan>
+        </text>
+        <text x="35" y="280" fill="rgba(255,255,255,0.55)" font-size="10">Quantify the baseline.</text>
+      </g>
+      <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+        <rect x="233" y="160" width="205" height="140" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)"/>
+        <text x="248" y="184" fill="#FAEC8C" font-size="9" font-weight="800" letter-spacing="2">MILESTONE</text>
+        <text x="248" y="208" fill="#FFFFFF" font-size="11" font-weight="600">
+          <tspan x="248" dy="0">Scope memo:</tspan>
+          <tspan x="248" dy="15">one workflow,</tspan>
+          <tspan x="248" dy="15">one team, one metric.</tspan>
+        </text>
+        <text x="248" y="280" fill="rgba(255,255,255,0.55)" font-size="10">Resist scoping two.</text>
+      </g>
+      <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+        <rect x="446" y="160" width="205" height="140" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)"/>
+        <text x="461" y="184" fill="#FAEC8C" font-size="9" font-weight="800" letter-spacing="2">MILESTONE</text>
+        <text x="461" y="208" fill="#FFFFFF" font-size="11" font-weight="600">
+          <tspan x="461" dy="0">Shadow-mode report:</tspan>
+          <tspan x="461" dy="15">where AI matched,</tspan>
+          <tspan x="461" dy="15">where it diverged.</tspan>
+        </text>
+        <text x="461" y="280" fill="rgba(255,255,255,0.55)" font-size="10">Reps do not switch tools.</text>
+      </g>
+      <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+        <rect x="659" y="160" width="205" height="140" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)"/>
+        <text x="674" y="184" fill="#FAEC8C" font-size="9" font-weight="800" letter-spacing="2">MILESTONE</text>
+        <text x="674" y="208" fill="#FFFFFF" font-size="11" font-weight="600">
+          <tspan x="674" dy="0">Production readout:</tspan>
+          <tspan x="674" dy="15">cycle, win rate,</tspan>
+          <tspan x="674" dy="15">margin, adoption.</tspan>
+        </text>
+        <text x="674" y="280" fill="rgba(255,255,255,0.55)" font-size="10">Subset of accounts or reps.</text>
+      </g>
+      <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+        <rect x="872" y="160" width="205" height="140" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)"/>
+        <text x="887" y="184" fill="#FAEC8C" font-size="9" font-weight="800" letter-spacing="2">MILESTONE</text>
+        <text x="887" y="208" fill="#FFFFFF" font-size="11" font-weight="600">
+          <tspan x="887" dy="0">Go/no-go memo</tspan>
+          <tspan x="887" dy="15">to the executive team</tspan>
+          <tspan x="887" dy="15">with the next workflow.</tspan>
+        </text>
+        <text x="887" y="280" fill="rgba(255,255,255,0.55)" font-size="10">The discipline of stop.</text>
+      </g>
+    </svg>
+  </div>
+
+  <p>Three principles make this work. First, the baseline metric is non-negotiable. You cannot prove an improvement against a vibe. Second, shadow mode is the unlock: running AI alongside the human process gives you the failure-mode data you need before betting reps on it. Third, the go/no-go is real. The discipline of being willing to stop on day 90 is what makes the program credible to the rest of the executive team. A program that cannot be stopped is a program that will never get started.</p>
+
+  <div class="pullquote">
+    <span class="pullquote-mark grad-text">&ldquo;</span>
+    <div class="pullquote-body">Do not boil the ocean. Prove one workflow. Then earn the right to the next one.</div>
+  </div>
+</section>
+
+<!-- ===================== CHAPTER 5 ===================== -->
+<section class="opener" id="ch5">
+  <div class="opener-mark">
+    <div class="ch-label">Chapter Five</div>
+    <div class="ch-num grad-text">05</div>
+    <div class="ch-rule"></div>
+  </div>
+  <div class="opener-body">
+    <h2 class="chapter-title">Common Pitfalls.</h2>
+    <p class="ch-kicker">Most AI adoption failures in material industries are not caused by the AI. They are caused by predictable organizational patterns that derail any new system.</p>
+  </div>
+</section>
+
+<section class="page page--measure">
+  <p>Four show up almost every time.</p>
+
+  <div class="pitfalls full">
+
+    <div class="pitfall">
+      <div class="pitfall-num">
+        <svg class="pitfall-icon" viewBox="0 0 24 24" fill="none" stroke="#FD6437" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.2 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.2a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span class="grad-text">01</span>
+      </div>
+      <div class="pitfall-body">
+        <h4>The Data-Quality Myth</h4>
+        <div class="pitfall-block">
+          <div class="pb-label">What people say</div>
+          <div class="pb-text">"Our data is too messy for AI. Let's spend a year cleaning it up first."</div>
+        </div>
+        <div class="pitfall-block">
+          <div class="pb-label">What actually happens</div>
+          <div class="pb-text">The cleanup project becomes its own program with its own budget and its own slipping timeline. AI adoption stalls indefinitely. Meanwhile, the current generation of LLMs is specifically designed to work on messy, unstructured data. PDF specs, inconsistent units, hand-written customer notes. These are exactly the inputs modern systems handle.</div>
+        </div>
+        <div class="pitfall-block">
+          <div class="pb-label">The right move</div>
+          <div class="pb-text">Start with the workflow that has the worst data. Use the AI pilot to surface what is actually broken, then fix only what blocks the workflow. <em>Data cleanup as a side effect of adoption beats data cleanup as a prerequisite to it.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pitfall">
+      <div class="pitfall-num">
+        <svg class="pitfall-icon" viewBox="0 0 24 24" fill="none" stroke="#FD6437" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20.5c0-3 2.9-5.2 6.5-5.2s6.5 2.2 6.5 5.2"/><circle cx="17.5" cy="9" r="2.4"/><path d="M14.7 20.5c0-2.5 1.6-4.3 3.5-4.3 1.5 0 3.3 1.1 3.3 3.3"/></svg>
+        <span class="grad-text">02</span>
+      </div>
+      <div class="pitfall-body">
+        <h4>The Replace-People Fear</h4>
+        <div class="pitfall-block">
+          <div class="pb-label">What people say</div>
+          <div class="pb-text">"My reps will think this tool is being rolled out to replace them. Adoption will tank."</div>
+        </div>
+        <div class="pitfall-block">
+          <div class="pb-label">What actually happens</div>
+          <div class="pb-text">The reps who use the tool become two to three times more productive than the ones who do not. None of them get replaced. The team's revenue per rep simply doubles. The reps who refuse to adopt eventually self-select out, usually voluntarily, when the gap becomes visible in their commission numbers.</div>
+        </div>
+        <div class="pitfall-block">
+          <div class="pb-label">The right move</div>
+          <div class="pb-text">Position the tool as rep capacity multiplier, not rep replacement. Pair the rollout with an explicit promise: no headcount reductions in the first year. Then keep that promise.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pitfall">
+      <div class="pitfall-num">
+        <svg class="pitfall-icon" viewBox="0 0 24 24" fill="none" stroke="#FD6437" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="8" width="8.5" height="8" rx="1.5"/><rect x="14" y="8" width="8.5" height="8" rx="1.5"/><line x1="10" y1="12" x2="14" y2="12"/><line x1="4.5" y1="5" x2="4.5" y2="8"/><line x1="7" y1="5" x2="7" y2="8"/><line x1="17" y1="16" x2="17" y2="19"/><line x1="19.5" y1="16" x2="19.5" y2="19"/></svg>
+        <span class="grad-text">03</span>
+      </div>
+      <div class="pitfall-body">
+        <h4>The ERP-Integration Trap</h4>
+        <div class="pitfall-block">
+          <div class="pb-label">What people say</div>
+          <div class="pb-text">"We have Datacor. Nothing will integrate with Datacor. Let's wait."</div>
+        </div>
+        <div class="pitfall-block">
+          <div class="pb-label">What actually happens</div>
+          <div class="pb-text">Datacor runs more than half of the Alliance of Chemical Distributors member businesses and 700-plus installations. Every serious Material Operations AI vendor has been asked about Datacor integration. The vendors who have a real answer are easy to identify. The ones who do not should not be on your shortlist.</div>
+        </div>
+        <div class="pitfall-block">
+          <div class="pb-label">The right move</div>
+          <div class="pb-text">Make the Datacor (or SAP) integration question the third question in your first vendor call, after "show me the product" and "who has it in production." If the answer is vague, the rest of the demo does not matter.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pitfall">
+      <div class="pitfall-num">
+        <svg class="pitfall-icon" viewBox="0 0 24 24" fill="none" stroke="#FD6437" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 2.5h13"/><path d="M5.5 21.5h13"/><path d="M5.5 2.5v3.5l6.5 6-6.5 6v3.5"/><path d="M18.5 2.5v3.5l-6.5 6 6.5 6v3.5"/><path d="M9 19.5h6"/></svg>
+        <span class="grad-text">04</span>
+      </div>
+      <div class="pitfall-body">
+        <h4>The Wait-for-Perfect Trap</h4>
+        <div class="pitfall-block">
+          <div class="pb-label">What people say</div>
+          <div class="pb-text">"This space is moving fast. Wait six months and the tools will be better."</div>
+        </div>
+        <div class="pitfall-block">
+          <div class="pb-label">What actually happens</div>
+          <div class="pb-text">The tools will be better in six months. They will also be better six months after that. The compounding advantage of the team that started in 2026 will be a year of operational learning that the team starting in 2027 cannot buy. Adoption is not a technology decision. It is an organizational learning decision, and that clock has already started.</div>
+        </div>
+        <div class="pitfall-block">
+          <div class="pb-label">The right move</div>
+          <div class="pb-text">Start with the 90-day playbook in Chapter Four. The cost of starting is bounded. The cost of waiting is not.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== CHAPTER 6 ===================== -->
+<section class="opener" id="ch6">
+  <div class="opener-mark">
+    <div class="ch-label">Chapter Six</div>
+    <div class="ch-num grad-text">06</div>
+    <div class="ch-rule"></div>
+  </div>
+  <div class="opener-body">
+    <h2 class="chapter-title">What Year One Looks Like.</h2>
+    <p class="ch-kicker">The picture a VP of Commercial Excellence should be able to draw on a single page for the CEO and CFO twelve months after the program starts.</p>
+  </div>
+</section>
+
+<section class="page page--measure">
+  <p>These are the metrics that earn the budget for year two.</p>
+
+  <div class="scorecard full">
+    <div class="score-row">
+      <div class="score-name">Quoting cycle time</div>
+      <div class="score-bars">
+        <div class="score-bar-row"><div class="score-bar-label before">Before</div><div class="score-bar-track"><div class="score-bar-fill before" style="width:95%"></div></div></div>
+        <div class="score-bar-row"><div class="score-bar-label after">After</div><div class="score-bar-track"><div class="score-bar-fill after" style="width:18%"></div></div></div>
+      </div>
+      <div class="score-support">Hours to under fifteen minutes for the majority of standard quotes. Tracked by share of quotes drafted automatically and approved with edits.</div>
+    </div>
+    <div class="score-row">
+      <div class="score-name">Win rate on key accounts</div>
+      <div class="score-bars">
+        <div class="score-bar-row"><div class="score-bar-label before">Before</div><div class="score-bar-track"><div class="score-bar-fill before" style="width:35%"></div></div></div>
+        <div class="score-bar-row"><div class="score-bar-label after">After</div><div class="score-bar-track"><div class="score-bar-fill after" style="width:78%"></div></div></div>
+      </div>
+      <div class="score-support">Named accounts where AI surfaces cross-sell openings and accelerates first-quote turnaround. Tracked by share-of-wallet growth.</div>
+    </div>
+    <div class="score-row">
+      <div class="score-name">Pipeline coverage</div>
+      <div class="score-bars">
+        <div class="score-bar-row"><div class="score-bar-label before">Before</div><div class="score-bar-track"><div class="score-bar-fill before" style="width:90%"></div></div></div>
+        <div class="score-bar-row"><div class="score-bar-label after">After</div><div class="score-bar-track"><div class="score-bar-fill after" style="width:30%"></div></div></div>
+      </div>
+      <div class="score-support">A forecast the CFO can trust within a tighter band than last year. Tracked by quarter-end variance between forecast and actual.</div>
+    </div>
+    <div class="score-row">
+      <div class="score-name">Rep ramp time</div>
+      <div class="score-bars">
+        <div class="score-bar-row"><div class="score-bar-label before">Before</div><div class="score-bar-track"><div class="score-bar-fill before" style="width:92%"></div></div></div>
+        <div class="score-bar-row"><div class="score-bar-label after">After</div><div class="score-bar-track"><div class="score-bar-fill after" style="width:42%"></div></div></div>
+      </div>
+      <div class="score-support">New reps to first quote, first deal, and full quota all compressed. Tracked by months-to-quota versus prior cohort.</div>
+    </div>
+    <div class="score-row">
+      <div class="score-name">Cost-to-serve</div>
+      <div class="score-bars">
+        <div class="score-bar-row"><div class="score-bar-label before">Before</div><div class="score-bar-track"><div class="score-bar-fill before" style="width:95%"></div></div></div>
+        <div class="score-bar-row"><div class="score-bar-label after">After</div><div class="score-bar-track"><div class="score-bar-fill after" style="width:72%"></div></div></div>
+      </div>
+      <div class="score-support">Defensible reduction in operating cost per quote, per onboarding, per pricing decision. McKinsey reports 15 to 50 percent in chemical distribution; pick the conservative half and prove it.</div>
+    </div>
+  </div>
+
+  <p>None of these numbers require an act of faith. They are the standard scorecard that AI-enabled commercial operations produce when run on a 90-day playbook with shadow-mode discipline. The year-one report is what makes year two an obvious decision rather than a renewed argument.</p>
+</section>
+
+<!-- ===================== CLOSE ===================== -->
+<section class="close" id="close">
+  <div class="close-glow"></div>
+  <div class="close-inner">
+    <div class="eyebrow">Closing</div>
+    <h2 class="close-statement">The category will be defined in the next <em class="grad-text">twelve months.</em></h2>
+    <p class="close-body">Material Operations AI is the operating layer that material industries have been missing since the spreadsheet replaced the legal pad. The commercial leaders who run the 90-day playbook in 2026 will set the benchmark the rest of the category measures against. The ones who wait will spend 2028 trying to close a gap that compounded while they were watching.</p>
+    <p class="close-body">Vailent builds toward that operating layer &mdash; <strong>TradePass</strong> for onboarding, <strong>Catalog</strong> for material management, <strong>DealFlow</strong> for commercial activity, and <strong>Workflows</strong> for the connective tissue between them. If the framework in this Playbook fits the shape of the problem on your desk, the next step is a conversation about how it would map onto your specific commercial operation.</p>
+
+    <a href="https://vailent.com" class="close-cta">
+      Read more at vailent.com
+      <span class="arrow">&rarr;</span>
+    </a>
+
+    <div class="colophon">
+      <div class="colophon-meta">
+        This Playbook references published industry research including ICIS on chemical distribution buyer behavior, McKinsey on digital cost-to-serve in chemical distribution, and Alliance of Chemical Distributors data on ERP adoption. Intended as a framework for commercial leaders evaluating AI adoption, not as a substitute for diligence on a specific operational decision.
+      </div>
+      <div>
+        <div style="color: var(--lemon); font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;">Vailent &middot; 2026</div>
+        <div style="margin-top: 6px;">Edition 01 &middot; Material Operations AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+</body>
+</html>
