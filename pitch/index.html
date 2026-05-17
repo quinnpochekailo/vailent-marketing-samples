@@ -763,6 +763,124 @@ h3.headline-sm {
 .proof-row--base .proof-link { font-size: clamp(0.75rem, 0.85vw, 0.9rem); }
 .proof-link:hover { color: var(--coral); }
 
+/* SLIDE 14 — TOTAL INVESTMENT (spend grid) */
+.spend-slide {
+  justify-content: flex-start;
+  padding-top: clamp(28px, 4vh, 56px);
+  padding-bottom: clamp(24px, 3vh, 40px);
+  position: relative;
+  overflow: hidden;
+}
+.spend-slide::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70vw;
+  height: 60vw;
+  max-width: 1000px;
+  max-height: 700px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(253, 100, 55, 0.14) 0%, rgba(250, 236, 140, 0.04) 40%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+.spend-slide > *:not(.slide-num) { position: relative; z-index: 1; }
+.spend-subhead {
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  color: var(--fg-60);
+  margin-top: 12px;
+  margin-bottom: clamp(20px, 3vh, 32px);
+}
+.spend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr 1fr;
+  gap: clamp(14px, 1.6vw, 24px);
+  margin-top: clamp(16px, 2vh, 28px);
+  align-items: stretch;
+}
+.spend-card {
+  border: 1px solid var(--hairline);
+  background: var(--fg-04);
+  border-radius: 14px;
+  padding: clamp(18px, 2vh, 28px) clamp(16px, 1.8vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.2vh, 16px);
+  position: relative;
+}
+.spend-card--recommended {
+  border: 2px solid transparent;
+  background: linear-gradient(var(--black-elev), var(--black-elev)) padding-box,
+              linear-gradient(135deg, var(--lemon) 0%, var(--coral) 100%) border-box;
+  box-shadow: 0 0 48px rgba(253, 100, 55, 0.20), 0 0 100px rgba(250, 236, 140, 0.06);
+  transform: translateY(-10px);
+}
+.spend-tier {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--fg-60);
+}
+.spend-card--recommended .spend-tier {
+  background-image: linear-gradient(90deg, var(--lemon) 0%, var(--coral) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.spend-total {
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.spend-total-sub {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.55;
+  margin-left: 4px;
+}
+.spend-card--recommended .spend-total {
+  background-image: linear-gradient(135deg, var(--coral) 0%, #FF8856 45%, var(--lemon) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.spend-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: clamp(8px, 1vh, 12px);
+  border-top: 1px solid var(--hairline);
+}
+.spend-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: clamp(0.82rem, 0.98vw, 0.98rem);
+  opacity: 0.85;
+}
+.spend-row-label { color: var(--fg-60); }
+.spend-row-value { font-weight: 600; }
+.spend-caption {
+  font-size: clamp(0.78rem, 0.92vw, 0.92rem);
+  font-style: italic;
+  opacity: 0.65;
+  margin-top: auto;
+  padding-top: clamp(8px, 1vh, 12px);
+}
+.spend-footer {
+  margin-top: clamp(20px, 3vh, 36px);
+  font-size: clamp(0.82rem, 0.95vw, 0.95rem);
+  text-align: center;
+  opacity: 0.55;
+}
+.spend-footer a { color: var(--gold); text-decoration: none; border-bottom: 1px solid currentColor; }
+
 /* MOBILE / NARROW */
 @media (max-width: 900px) {
   section { padding: 28px 24px; height: auto; min-height: 100vh; }
@@ -777,6 +895,8 @@ h3.headline-sm {
   .day-num { font-size: clamp(4rem, 18vw, 8rem); }
   .split { grid-template-columns: 1fr; }
   .actions { grid-template-columns: 1fr; }
+  .spend-grid { grid-template-columns: 1fr; }
+  .spend-card--recommended { transform: none; }
   .proof-row { flex-direction: column; align-items: center; }
   .proof-tile { flex-direction: column; align-items: flex-start; width: 100%; max-width: 420px; }
   .proof-row--apex .proof-square,
@@ -821,7 +941,7 @@ h3.headline-sm {
       </linearGradient>
     </defs>
   </svg>
-  <span class="slide-num">01 / 14</span>
+  <span class="slide-num">01 / 15</span>
   <div class="eyebrow hero-eyebrow" style="margin-top: clamp(48px, 7vh, 80px);">Marketing Plan · 2026 Q2 / Q3</div>
   <h1 class="headline">Category Winning<br>to Drive Leads.</h1>
   <p class="category-def">
@@ -832,7 +952,7 @@ h3.headline-sm {
 
 <!-- SLIDE 2 — THE WINDOW -->
 <section class="theme-navy">
-  <span class="slide-num">02 / 14</span>
+  <span class="slide-num">02 / 15</span>
   <div class="eyebrow" style="color: var(--gold);">The Window</div>
   <h2 class="headline-md">The category is unclaimed.<br>We have a six-month head start.</h2>
   <div class="stats-grid">
@@ -854,7 +974,7 @@ h3.headline-sm {
 
 <!-- SLIDE 3 — THE GAPS -->
 <section class="theme-navy">
-  <span class="slide-num">03 / 14</span>
+  <span class="slide-num">03 / 15</span>
   <div class="eyebrow" style="color: var(--gold);">The Gaps</div>
   <h2 class="headline-md">Four open lanes.<br>Nobody's running in any of them.</h2>
   <div class="gap-grid">
@@ -879,7 +999,7 @@ h3.headline-sm {
 
 <!-- SLIDE 4 — THE BET -->
 <section class="theme-navy-gold">
-  <span class="slide-num">04 / 14</span>
+  <span class="slide-num">04 / 15</span>
   <div class="eyebrow">The Bet</div>
   <p class="bet-statement">You become the <em>category leader in Material Operations AI</em> — publicly, weekly, on every surface a buyer touches.</p>
   <p class="bet-sub">Category leadership compounds. The second mover never catches up.</p>
@@ -887,7 +1007,7 @@ h3.headline-sm {
 
 <!-- SLIDE 5 — THE HUB -->
 <section class="theme-navy">
-  <span class="slide-num">05 / 14</span>
+  <span class="slide-num">05 / 15</span>
   <div class="eyebrow" style="color: var(--gold);">The Hub</div>
   <h2 class="headline-md">One operator. One hub.<br>Ten surfaces.</h2>
   <div class="hub-wrap">
@@ -913,7 +1033,7 @@ h3.headline-sm {
 
 <!-- SLIDE 6 — HOW DECISIONS GET MADE -->
 <section class="theme-navy">
-  <span class="slide-num">06 / 14</span>
+  <span class="slide-num">06 / 15</span>
   <div class="eyebrow" style="color: var(--gold);">How Decisions Get Made</div>
   <h2 class="headline-md">Foundation. Generation.<br>Conversion. Analysis.</h2>
   <div class="flow">
@@ -946,7 +1066,7 @@ h3.headline-sm {
 
 <!-- SLIDE 7 — GENERATION (PROOF) -->
 <section class="theme-navy proof-slide">
-  <span class="slide-num">07 / 14</span>
+  <span class="slide-num">07 / 15</span>
   <div class="proof-header">
     <div class="eyebrow" style="color: var(--gold);">Generation</div>
     <h2 class="headline-md">Visually stunning.<br>Verified by Knowledge Base.</h2>
@@ -999,7 +1119,7 @@ h3.headline-sm {
 
 <!-- SLIDE 8 — DAY 1 -->
 <section class="theme-navy">
-  <span class="slide-num">08 / 14</span>
+  <span class="slide-num">08 / 15</span>
   <div class="timeline-slide">
     <div class="day-marker">
       <div class="day-label">Timeline</div>
@@ -1025,7 +1145,7 @@ h3.headline-sm {
 
 <!-- SLIDE 9 — DAY 7 -->
 <section class="theme-navy">
-  <span class="slide-num">09 / 14</span>
+  <span class="slide-num">09 / 15</span>
   <div class="timeline-slide">
     <div class="day-marker">
       <div class="day-label">Timeline</div>
@@ -1049,7 +1169,7 @@ h3.headline-sm {
 
 <!-- SLIDE 10 — DAY 14 -->
 <section class="theme-navy">
-  <span class="slide-num">10 / 14</span>
+  <span class="slide-num">10 / 15</span>
   <div class="timeline-slide">
     <div class="day-marker">
       <div class="day-label">Timeline</div>
@@ -1074,7 +1194,7 @@ h3.headline-sm {
 
 <!-- SLIDE 11 — DAY 30 -->
 <section class="theme-navy">
-  <span class="slide-num">11 / 14</span>
+  <span class="slide-num">11 / 15</span>
   <div class="hero-glow"></div>
   <div class="timeline-slide">
     <div class="day-marker">
@@ -1100,7 +1220,7 @@ h3.headline-sm {
 
 <!-- SLIDE 12 — OWNS -->
 <section class="theme-cream">
-  <span class="slide-num">12 / 14</span>
+  <span class="slide-num">12 / 15</span>
   <div class="eyebrow" style="color: var(--orange);">Ownership</div>
   <h2 class="headline-md">Clean lines.<br>No overlap.</h2>
   <div class="split">
@@ -1141,7 +1261,7 @@ h3.headline-sm {
 
 <!-- SLIDE 13 — ACTION ITEMS -->
 <section class="theme-navy">
-  <span class="slide-num">13 / 14</span>
+  <span class="slide-num">13 / 15</span>
   <div class="eyebrow" style="color: var(--gold);">Launch Checklist</div>
   <h2 class="headline-md">Action items for Vailent to launch.</h2>
   <div class="actions">
@@ -1184,7 +1304,54 @@ h3.headline-sm {
   </div>
 </section>
 
-<!-- SLIDE 14 — CLOSE -->
+<!-- SLIDE 14 — TOTAL INVESTMENT -->
+<section class="theme-navy spend-slide">
+  <span class="slide-num">14 / 15</span>
+  <div class="eyebrow" style="color: var(--gold);">Total Investment</div>
+  <h2 class="headline-md">What it costs to run.</h2>
+  <p class="spend-subhead">Four paths, four price tags. Same engine, same playbook — committed differently.</p>
+  <div class="spend-grid">
+    <div class="spend-card">
+      <div class="spend-tier">Conservative</div>
+      <div class="spend-total">~$118K<span class="spend-total-sub">/ year</span></div>
+      <div class="spend-breakdown">
+        <div class="spend-row"><span class="spend-row-label">Paid Media</span><span class="spend-row-value">~$112K</span></div>
+        <div class="spend-row"><span class="spend-row-label">Tools</span><span class="spend-row-value">~$1.5K</span></div>
+      </div>
+      <p class="spend-caption">Minimum-viable validation. Proves the model with real Vailent data.</p>
+    </div>
+    <div class="spend-card">
+      <div class="spend-tier">Middle</div>
+      <div class="spend-total">~$274K<span class="spend-total-sub">/ year</span></div>
+      <div class="spend-breakdown">
+        <div class="spend-row"><span class="spend-row-label">Paid Media</span><span class="spend-row-value">~$268K</span></div>
+        <div class="spend-row"><span class="spend-row-label">Tools</span><span class="spend-row-value">~$3K</span></div>
+      </div>
+      <p class="spend-caption">Execute the playbook. Hits US ABM average from Day 31.</p>
+    </div>
+    <div class="spend-card spend-card--recommended">
+      <div class="spend-tier">★ Ramp Up — Recommended</div>
+      <div class="spend-total">~$340K<span class="spend-total-sub">/ year</span></div>
+      <div class="spend-breakdown">
+        <div class="spend-row"><span class="spend-row-label">Paid Media</span><span class="spend-row-value">~$328K</span></div>
+        <div class="spend-row"><span class="spend-row-label">Tools</span><span class="spend-row-value">~$3-11K</span></div>
+      </div>
+      <p class="spend-caption">Validate cheaply, scale on evidence. Decision gates drive each escalation.</p>
+    </div>
+    <div class="spend-card">
+      <div class="spend-tier">Aggressive</div>
+      <div class="spend-total">~$594K<span class="spend-total-sub">/ year</span></div>
+      <div class="spend-breakdown">
+        <div class="spend-row"><span class="spend-row-label">Paid Media</span><span class="spend-row-value">~$574K</span></div>
+        <div class="spend-row"><span class="spend-row-label">Tools</span><span class="spend-row-value">~$15K</span></div>
+      </div>
+      <p class="spend-caption">Capture the category. Top-quartile ABM spend from Day 1.</p>
+    </div>
+  </div>
+  <p class="spend-footer">Full breakdown — channels, tools, decision gates — in <a href="PAID_MARKETING_PLAN.html">PAID_MARKETING_PLAN.html</a>.</p>
+</section>
+
+<!-- SLIDE 15 — CLOSE -->
 <section class="theme-navy">
   <svg class="brand-logo brand-logo--sm" viewBox="0 0 251 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Vailent">
     <path d="M69 23.3885C69 29.6782 63.967 34.777 57.7585 34.777C51.5499 34.777 46.5169 29.6782 46.5169 23.3885C46.5169 17.0988 51.5499 12 57.7585 12C63.967 12 69 17.0988 69 23.3885Z" fill="url(#brandMark1c)"/>
@@ -1207,7 +1374,7 @@ h3.headline-sm {
       </linearGradient>
     </defs>
   </svg>
-  <span class="slide-num">14 / 14</span>
+  <span class="slide-num">15 / 15</span>
   <div class="eyebrow" style="color: var(--gold); margin-top: clamp(40px, 6vh, 64px);">Next Steps</div>
   <p class="close-statement">Here's what ships <em>Monday.</em></p>
   <ul class="close-recap">
@@ -1220,7 +1387,7 @@ h3.headline-sm {
     <li>KB verification kickoff — ticket open, owners assigned.</li>
   </ul>
   <p class="kicker">If the shape works, the next conversation is the commercial one.</p>
-  <div class="close-link">Samples · <a href="https://quinnpochekailo.github.io/vailent-marketing-samples/">vailent-marketing-samples</a></div>
+  <div class="close-link">Companion · <a href="COMPETITIVE_MARKETING_ANALYSIS_V3.html">COMPETITIVE_MARKETING_ANALYSIS_V3.html</a></div>
 </section>
 
 </div>
