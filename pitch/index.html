@@ -612,21 +612,37 @@ h3.headline-sm {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.2vh, 12px);
+  gap: clamp(10px, 1.5vh, 16px);
   font-size: clamp(0.95rem, 1.25vw, 1.15rem);
-  opacity: 0.85;
-  max-width: 60ch;
+  max-width: 70ch;
 }
 .close-recap li {
-  padding-left: 20px;
-  position: relative;
+  display: grid;
+  grid-template-columns: clamp(140px, 18vw, 200px) 1fr;
+  gap: clamp(14px, 2vw, 24px);
+  align-items: baseline;
   line-height: 1.45;
+  padding-bottom: clamp(8px, 1.2vh, 14px);
+  border-bottom: 1px solid var(--hairline);
 }
-.close-recap li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--gold);
+.close-recap li:last-child { border-bottom: none; }
+.close-recap-when {
+  font-size: clamp(0.7rem, 0.85vw, 0.85rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 800;
+  background-image: linear-gradient(90deg, var(--lemon) 0%, var(--coral) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+.close-recap-what {
+  opacity: 0.85;
+}
+@media (max-width: 900px) {
+  .close-recap li { grid-template-columns: 1fr; gap: 4px; }
 }
 .close-link {
   position: absolute;
@@ -1512,13 +1528,11 @@ h3.headline-sm {
   <div class="eyebrow" style="color: var(--gold); margin-top: clamp(40px, 6vh, 64px);">Next Steps</div>
   <p class="close-statement">Here's what ships <em>Monday.</em></p>
   <ul class="close-recap">
-    <li>The hub deployed against your KB. 7 personas loaded and validated.</li>
-    <li>CRM stood up — ICP pipelines, MQL → SQL → SAL lifecycle mapped.</li>
-    <li>GA4 + GTM + LinkedIn Insight Tag + Meta Pixel — full measurement stack live before a dollar runs.</li>
-    <li>LinkedIn API access submitted. UTM convention published. Conversion API stubbed.</li>
-    <li>Target account list — top 50 distributor accounts loaded into LinkedIn Matched Audiences.</li>
-    <li>First founder-lens LinkedIn post live. Pulse feed running on chemical-distribution sources.</li>
-    <li>KB verification kickoff — ticket open, owners assigned.</li>
+    <li><span class="close-recap-when">Monday you approve</span><span class="close-recap-what">Stack live. Paid campaigns staged. KB verification kicked off.</span></li>
+    <li><span class="close-recap-when">Day 14</span><span class="close-recap-what">Paid is live. First MQLs in the CRM. Daily LinkedIn cadence locked.</span></li>
+    <li><span class="close-recap-when">Day 30</span><span class="close-recap-what">3 landing pages across top personas. Mature funnels. First CPL benchmarks set.</span></li>
+    <li><span class="close-recap-when">Day 90</span><span class="close-recap-what">Decision gates fire (or hold). Pipeline visible. First closed-opp scaffolding.</span></li>
+    <li><span class="close-recap-when">Month 6+</span><span class="close-recap-what">Category position established. Compounding flywheel running.</span></li>
   </ul>
   <p class="kicker">If the shape works, the next conversation is the commercial one.</p>
   <div class="close-link">Companion · <a href="https://quinnpochekailo.github.io/vailent-marketing-samples/analysis/">Competitive Marketing Analysis V3</a></div>
