@@ -450,11 +450,12 @@ h3.headline-sm {
   opacity: 0.7;
 }
 .day-num {
-  font-size: clamp(5rem, 16vw, 14rem);
+  font-size: clamp(4rem, 11vw, 10rem);
   font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 1.0;
   padding-bottom: 0.05em; /* breathing room so descenders don't crash into the tag below */
+  white-space: nowrap; /* keeps "Day 14" / "Day 30" on one line */
   /* coral → lemon gradient — matches logo mark, unifies all four day markers */
   background-image: linear-gradient(135deg, var(--coral) 0%, #FF8856 45%, var(--lemon) 100%);
   -webkit-background-clip: text;
