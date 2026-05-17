@@ -863,6 +863,16 @@ h3.headline-sm {
   padding-top: clamp(8px, 1vh, 12px);
   border-top: 1px solid var(--hairline);
 }
+.spend-section-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--fg-40);
+  margin-top: clamp(8px, 1vh, 12px);
+  margin-bottom: 4px;
+}
+.spend-section-label:first-child { margin-top: 0; }
 .spend-row {
   display: flex;
   justify-content: space-between;
@@ -1140,7 +1150,7 @@ h3.headline-sm {
     <div class="day-marker">
       <div class="day-label">Timeline</div>
       <div class="day-num">Day 1</div>
-      <div class="day-tag">Foundation lit on fire. Every measurement surface live before a single dollar runs.</div>
+      <div class="day-tag">Full stack stood up. Every measurement surface live before a single dollar runs.</div>
     </div>
     <ul class="deliverables">
       <li><span class="surface-tag">Hub</span><span>Marketing hub deployed against your KB. 7 personas loaded and validated against the product walkthrough.</span></li>
@@ -1331,10 +1341,14 @@ h3.headline-sm {
       <div class="spend-tier">Conservative</div>
       <div class="spend-total">$5K<span class="spend-total-sub">/ mo at Day 30</span></div>
       <div class="spend-breakdown">
+        <div class="spend-section-label">Where it goes (Day 30)</div>
+        <div class="spend-row"><span class="spend-row-label">LinkedIn Paid</span><span class="spend-row-value">$3K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Google Search</span><span class="spend-row-value">$2K/mo</span></div>
+        <div class="spend-section-label">Ramp</div>
         <div class="spend-row"><span class="spend-row-label">Days 1-30</span><span class="spend-row-value">~$5K/mo</span></div>
         <div class="spend-row"><span class="spend-row-label">Days 31-90</span><span class="spend-row-value">~$7K/mo</span></div>
         <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$10K/mo</span></div>
-        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 total</span><span class="spend-row-value">~$118K</span></div>
+        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 paid media</span><span class="spend-row-value">~$110K</span></div>
       </div>
       <p class="spend-caption">Minimum-viable validation. Proves the model with real Vailent data before commitment grows.</p>
     </div>
@@ -1342,10 +1356,14 @@ h3.headline-sm {
       <div class="spend-tier">Middle</div>
       <div class="spend-total">$9K<span class="spend-total-sub">/ mo at Day 30</span></div>
       <div class="spend-breakdown">
+        <div class="spend-section-label">Where it goes (Day 30)</div>
+        <div class="spend-row"><span class="spend-row-label">LinkedIn Paid</span><span class="spend-row-value">$6K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Google Search</span><span class="spend-row-value">$3K/mo</span></div>
+        <div class="spend-section-label">Ramp</div>
         <div class="spend-row"><span class="spend-row-label">Days 1-30</span><span class="spend-row-value">~$9K/mo</span></div>
         <div class="spend-row"><span class="spend-row-label">Days 31-90</span><span class="spend-row-value">~$16K/mo</span></div>
         <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$24K/mo</span></div>
-        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 total</span><span class="spend-row-value">~$274K</span></div>
+        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 paid media</span><span class="spend-row-value">~$258K</span></div>
       </div>
       <p class="spend-caption">Execute the playbook. Hits the US ABM average ($12.7K/mo) from Day 31.</p>
     </div>
@@ -1353,21 +1371,30 @@ h3.headline-sm {
       <div class="spend-tier">★ Ramp Up — Recommended</div>
       <div class="spend-total">$5K<span class="spend-total-sub">/ mo at Day 30</span></div>
       <div class="spend-breakdown">
+        <div class="spend-section-label">Where it goes (Day 30)</div>
+        <div class="spend-row"><span class="spend-row-label">LinkedIn Paid</span><span class="spend-row-value">$3K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Google Search</span><span class="spend-row-value">$2K/mo</span></div>
+        <div class="spend-section-label">Ramp</div>
         <div class="spend-row"><span class="spend-row-label">Days 1-30</span><span class="spend-row-value">~$5K/mo</span></div>
         <div class="spend-row"><span class="spend-row-label">Days 31-90</span><span class="spend-row-value">~$16K/mo <em>if gates fire</em></span></div>
-        <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$32K/mo <em>if sustained</em></span></div>
-        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 total</span><span class="spend-row-value">~$340K <em>conditional</em></span></div>
+        <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$31K/mo <em>if sustained</em></span></div>
+        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 paid media</span><span class="spend-row-value">~$316K <em>conditional</em></span></div>
       </div>
       <p class="spend-caption">Same $5K start as Conservative. Each step up is contingent on evidence — never blind escalation.</p>
     </div>
     <div class="spend-card">
       <div class="spend-tier">Aggressive</div>
-      <div class="spend-total">$22K<span class="spend-total-sub">/ mo at Day 30</span></div>
+      <div class="spend-total">$21K<span class="spend-total-sub">/ mo at Day 30</span></div>
       <div class="spend-breakdown">
-        <div class="spend-row"><span class="spend-row-label">Days 1-30</span><span class="spend-row-value">~$22K/mo</span></div>
-        <div class="spend-row"><span class="spend-row-label">Days 31-90</span><span class="spend-row-value">~$36K/mo</span></div>
-        <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$52K/mo</span></div>
-        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 total</span><span class="spend-row-value">~$594K</span></div>
+        <div class="spend-section-label">Where it goes (Day 30)</div>
+        <div class="spend-row"><span class="spend-row-label">LinkedIn Paid</span><span class="spend-row-value">$12K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Google Search</span><span class="spend-row-value">$5K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Display + YouTube</span><span class="spend-row-value">$4K/mo</span></div>
+        <div class="spend-section-label">Ramp</div>
+        <div class="spend-row"><span class="spend-row-label">Days 1-30</span><span class="spend-row-value">~$21K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Days 31-90</span><span class="spend-row-value">~$35K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$51K/mo</span></div>
+        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 paid media</span><span class="spend-row-value">~$550K</span></div>
       </div>
       <p class="spend-caption">Capture the category. Top-quartile ABM spend from Day 1 — first-mover saturation.</p>
     </div>
