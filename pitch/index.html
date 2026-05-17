@@ -861,11 +861,21 @@ h3.headline-sm {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  gap: 8px;
   font-size: clamp(0.82rem, 0.98vw, 0.98rem);
   opacity: 0.85;
 }
-.spend-row-label { color: var(--fg-60); }
-.spend-row-value { font-weight: 600; }
+.spend-row-label { color: var(--fg-60); flex-shrink: 0; }
+.spend-row-value { font-weight: 600; text-align: right; }
+.spend-row-value em { font-style: italic; font-weight: 400; opacity: 0.7; font-size: 0.9em; }
+.spend-row--total {
+  padding-top: 8px;
+  margin-top: 4px;
+  border-top: 1px dashed var(--hairline);
+  opacity: 1;
+}
+.spend-row--total .spend-row-label { color: var(--fg); font-weight: 600; }
+.spend-card--recommended .spend-row--total .spend-row-value { color: var(--coral); }
 .spend-caption {
   font-size: clamp(0.78rem, 0.92vw, 0.92rem);
   font-style: italic;
@@ -1308,47 +1318,55 @@ h3.headline-sm {
 <section class="theme-navy spend-slide">
   <span class="slide-num">14 / 15</span>
   <div class="eyebrow" style="color: var(--gold);">Total Investment</div>
-  <h2 class="headline-md">What it costs to run.</h2>
-  <p class="spend-subhead">Four paths, four price tags. Same engine, same playbook — committed differently.</p>
+  <h2 class="headline-md">Start small. Scale on evidence.</h2>
+  <p class="spend-subhead">Day 30 spend is what Vailent commits to first. The ramp escalates only when decision gates fire — CPL under $50, meeting-rate over 12%, first closed opportunity.</p>
   <div class="spend-grid">
     <div class="spend-card">
       <div class="spend-tier">Conservative</div>
-      <div class="spend-total">~$118K<span class="spend-total-sub">/ year</span></div>
+      <div class="spend-total">$5K<span class="spend-total-sub">/ mo at Day 30</span></div>
       <div class="spend-breakdown">
-        <div class="spend-row"><span class="spend-row-label">Paid Media</span><span class="spend-row-value">~$112K</span></div>
-        <div class="spend-row"><span class="spend-row-label">Tools</span><span class="spend-row-value">~$1.5K</span></div>
+        <div class="spend-row"><span class="spend-row-label">Days 1-30</span><span class="spend-row-value">~$5K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Days 31-90</span><span class="spend-row-value">~$7K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$10K/mo</span></div>
+        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 total</span><span class="spend-row-value">~$118K</span></div>
       </div>
-      <p class="spend-caption">Minimum-viable validation. Proves the model with real Vailent data.</p>
+      <p class="spend-caption">Minimum-viable validation. Proves the model with real Vailent data before commitment grows.</p>
     </div>
     <div class="spend-card">
       <div class="spend-tier">Middle</div>
-      <div class="spend-total">~$274K<span class="spend-total-sub">/ year</span></div>
+      <div class="spend-total">$9K<span class="spend-total-sub">/ mo at Day 30</span></div>
       <div class="spend-breakdown">
-        <div class="spend-row"><span class="spend-row-label">Paid Media</span><span class="spend-row-value">~$268K</span></div>
-        <div class="spend-row"><span class="spend-row-label">Tools</span><span class="spend-row-value">~$3K</span></div>
+        <div class="spend-row"><span class="spend-row-label">Days 1-30</span><span class="spend-row-value">~$9K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Days 31-90</span><span class="spend-row-value">~$16K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$24K/mo</span></div>
+        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 total</span><span class="spend-row-value">~$274K</span></div>
       </div>
-      <p class="spend-caption">Execute the playbook. Hits US ABM average from Day 31.</p>
+      <p class="spend-caption">Execute the playbook. Hits the US ABM average ($12.7K/mo) from Day 31.</p>
     </div>
     <div class="spend-card spend-card--recommended">
       <div class="spend-tier">★ Ramp Up — Recommended</div>
-      <div class="spend-total">~$340K<span class="spend-total-sub">/ year</span></div>
+      <div class="spend-total">$5K<span class="spend-total-sub">/ mo at Day 30</span></div>
       <div class="spend-breakdown">
-        <div class="spend-row"><span class="spend-row-label">Paid Media</span><span class="spend-row-value">~$328K</span></div>
-        <div class="spend-row"><span class="spend-row-label">Tools</span><span class="spend-row-value">~$3-11K</span></div>
+        <div class="spend-row"><span class="spend-row-label">Days 1-30</span><span class="spend-row-value">~$5K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Days 31-90</span><span class="spend-row-value">~$16K/mo <em>if gates fire</em></span></div>
+        <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$32K/mo <em>if sustained</em></span></div>
+        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 total</span><span class="spend-row-value">~$340K <em>conditional</em></span></div>
       </div>
-      <p class="spend-caption">Validate cheaply, scale on evidence. Decision gates drive each escalation.</p>
+      <p class="spend-caption">Same $5K start as Conservative. Each step up is contingent on evidence — never blind escalation.</p>
     </div>
     <div class="spend-card">
       <div class="spend-tier">Aggressive</div>
-      <div class="spend-total">~$594K<span class="spend-total-sub">/ year</span></div>
+      <div class="spend-total">$22K<span class="spend-total-sub">/ mo at Day 30</span></div>
       <div class="spend-breakdown">
-        <div class="spend-row"><span class="spend-row-label">Paid Media</span><span class="spend-row-value">~$574K</span></div>
-        <div class="spend-row"><span class="spend-row-label">Tools</span><span class="spend-row-value">~$15K</span></div>
+        <div class="spend-row"><span class="spend-row-label">Days 1-30</span><span class="spend-row-value">~$22K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Days 31-90</span><span class="spend-row-value">~$36K/mo</span></div>
+        <div class="spend-row"><span class="spend-row-label">Months 4-12</span><span class="spend-row-value">~$52K/mo</span></div>
+        <div class="spend-row spend-row--total"><span class="spend-row-label">Y1 total</span><span class="spend-row-value">~$594K</span></div>
       </div>
-      <p class="spend-caption">Capture the category. Top-quartile ABM spend from Day 1.</p>
+      <p class="spend-caption">Capture the category. Top-quartile ABM spend from Day 1 — first-mover saturation.</p>
     </div>
   </div>
-  <p class="spend-footer">Full breakdown — channels, tools, decision gates — available on request.</p>
+  <p class="spend-footer">Numbers are LinkedIn Paid + Google Search. Tools (~$2-3K/year flat across all tiers — Sales Nav + HubSpot + ElevenLabs) and conference sponsorships (~$5-30K once/year) layer in separately. Full breakdown available on request.</p>
 </section>
 
 <!-- SLIDE 15 — CLOSE -->
