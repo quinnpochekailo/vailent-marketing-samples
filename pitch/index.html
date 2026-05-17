@@ -471,34 +471,56 @@ h3.headline-sm {
   line-height: 1.3;
 }
 .deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.5vh, 28px);
+  list-style: none;
+}
+.deliverable-group-title {
+  font-size: clamp(0.62rem, 0.78vw, 0.78rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--coral);
+  margin-bottom: clamp(8px, 1.2vh, 12px);
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(253, 100, 55, 0.30);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.deliverable-group-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(253,100,55,0.30) 0%, transparent 100%);
+}
+.deliverable-group ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: clamp(6px, 0.9vh, 10px);
 }
-.deliverables li {
+.deliverable-group li {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 12px;
   align-items: start;
-  font-size: clamp(0.85rem, 1.05vw, 1.05rem);
-  line-height: 1.35;
-  padding-bottom: clamp(6px, 0.9vh, 10px);
-  border-bottom: 1px solid var(--hairline);
+  font-size: clamp(0.82rem, 0.98vw, 0.98rem);
+  line-height: 1.4;
 }
-.deliverables li:last-child { border-bottom: none; }
-.deliverables .surface-tag {
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
+.deliverable-group .surface-tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 700;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.06);
   color: var(--fg-60);
-  padding: 4px 8px;
+  padding: 3px 8px;
   border-radius: 4px;
   white-space: nowrap;
-  margin-top: 4px;
-  min-width: 90px;
+  margin-top: 3px;
+  min-width: 84px;
   text-align: center;
 }
 
@@ -1152,20 +1174,35 @@ h3.headline-sm {
       <div class="day-num">Day 1</div>
       <div class="day-tag">Full stack stood up. Every measurement surface live before a single dollar runs.</div>
     </div>
-    <ul class="deliverables">
-      <li><span class="surface-tag">Hub</span><span>Marketing hub deployed against your KB. 7 personas loaded and validated against the product walkthrough.</span></li>
-      <li><span class="surface-tag">Website</span><span>Site audit + technical SEO baseline — Core Web Vitals scored, schema markup gaps logged, redirect map drafted.</span></li>
-      <li><span class="surface-tag">CRM</span><span>HubSpot Free instance stood up. Contact + deal pipelines configured for the Vailent ICP <em>(Ideal Customer Profile)</em>. Lifecycle stages mapped MQL → SQL → SAL.</span></li>
-      <li><span class="surface-tag">GA4</span><span>GA4 property created, measurement ID provisioned. Enhanced Measurement on, cross-domain tracking configured.</span></li>
-      <li><span class="surface-tag">GTM</span><span>Google Tag Manager container deployed site-wide. Baseline triggers + dataLayer events wired (page_view, form_submit, scroll, outbound_click).</span></li>
-      <li><span class="surface-tag">Pixel</span><span>LinkedIn Insight Tag <em>(LIT)</em> live across the site. Meta Pixel deployed as retargeting insurance.</span></li>
-      <li><span class="surface-tag">CAPI</span><span>Server-side Conversion API stub ready — first-party offline conversion uploads queued for Day 7.</span></li>
-      <li><span class="surface-tag">API</span><span>LinkedIn Marketing Developer Platform application submitted: <code>r_ads</code>, <code>r_organization_social</code>, <code>w_member_social</code>.</span></li>
-      <li><span class="surface-tag">UTM</span><span>UTM tagging convention published. Every outbound link traceable to channel / campaign / persona / angle.</span></li>
-      <li><span class="surface-tag">Targeting</span><span>TAL <em>(Target Account List)</em> v1 — top 50 distributor accounts loaded into LinkedIn Matched Audiences.</span></li>
-      <li><span class="surface-tag">LinkedIn</span><span>First founder-lens post live. Pulse feed running on chemical-distribution signal sources.</span></li>
-      <li><span class="surface-tag">KB</span><span>Verification kickoff — ticket open, owners assigned by you. Credibility gate active.</span></li>
-    </ul>
+    <div class="deliverables">
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Foundation</div>
+        <ul>
+          <li><span class="surface-tag">Hub</span><span>Marketing hub deployed against your KB <em>(Knowledge Base)</em>. 7 personas loaded and validated against the product walkthrough.</span></li>
+          <li><span class="surface-tag">Website</span><span>Site audit + technical SEO baseline — Core Web Vitals scored, schema gaps logged, redirect map drafted.</span></li>
+          <li><span class="surface-tag">CRM</span><span>Lifecycle stages mapped MQL → SQL → SAL. Hub-native automation, or wired into your existing CRM if you've got one.</span></li>
+          <li><span class="surface-tag">KB</span><span>Verification kickoff — ticket open, owners assigned by you. Credibility gate active.</span></li>
+        </ul>
+      </div>
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Measurement Stack</div>
+        <ul>
+          <li><span class="surface-tag">GA4</span><span>Property created, Enhanced Measurement on, cross-domain tracking configured.</span></li>
+          <li><span class="surface-tag">GTM</span><span>Tag Manager container deployed site-wide. Baseline triggers wired (page_view, form_submit, scroll, outbound_click).</span></li>
+          <li><span class="surface-tag">Pixel</span><span>LinkedIn Insight Tag <em>(LIT)</em> live. Meta Pixel deployed as retargeting insurance.</span></li>
+          <li><span class="surface-tag">CAPI</span><span>Server-side Conversion API stub ready — first-party offline conversion uploads queued for Day 7.</span></li>
+          <li><span class="surface-tag">UTM</span><span>Tagging convention published. Every outbound link traceable to channel / campaign / persona / angle.</span></li>
+        </ul>
+      </div>
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Activation</div>
+        <ul>
+          <li><span class="surface-tag">API</span><span>LinkedIn Marketing Developer Platform application submitted: <code>r_ads</code>, <code>r_organization_social</code>, <code>w_member_social</code>.</span></li>
+          <li><span class="surface-tag">Targeting</span><span>TAL <em>(Target Account List)</em> v1 — top 50 distributor accounts loaded into LinkedIn Matched Audiences.</span></li>
+          <li><span class="surface-tag">LinkedIn</span><span>First founder-lens post live. Pulse feed running on chemical-distribution signal sources.</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1178,18 +1215,33 @@ h3.headline-sm {
       <div class="day-num">Day 7</div>
       <div class="day-tag">First week of category-defining output. Paid stack approved and ready to spend.</div>
     </div>
-    <ul class="deliverables">
-      <li><span class="surface-tag">LinkedIn</span><span>5 posts published — one per persona angle. Founder voice + employee advocacy seeded.</span></li>
-      <li><span class="surface-tag">Blog</span><span>First long-form draft in review — the category-defining piece, schema-tagged for Article + FAQ.</span></li>
-      <li><span class="surface-tag">Landing</span><span>v1 page live for the top-priority persona. Core Web Vitals green. CRO baseline set.</span></li>
-      <li><span class="surface-tag">Paid</span><span>LinkedIn campaign drafted: TOFU <em>(Top of Funnel)</em> Single Image Ad + MOFU <em>(Middle of Funnel)</em> Document Ad + BOFU <em>(Bottom of Funnel)</em> Lead Gen Form. Targeting, creative, bid strategy ready for your approval.</span></li>
-      <li><span class="surface-tag">Lead Gen</span><span>LinkedIn Lead Gen Form built — pre-filled fields, post-submit redirect, CRM sync via Zapier or native.</span></li>
-      <li><span class="surface-tag">CAPI</span><span>Conversion API live. Offline + form-fill conversions piping into LinkedIn for closed-loop reporting.</span></li>
-      <li><span class="surface-tag">CRO</span><span>Microsoft Clarity installed — heatmaps + session recordings on every landing page.</span></li>
-      <li><span class="surface-tag">Playbook</span><span>Outline drafted — TradePass-anchored: fraud and KYB for distributors.</span></li>
-      <li><span class="surface-tag">Domain</span><span>Memo: <strong>vailent.ai</strong> vs <strong>vailent.com</strong> recommendation, with redirect + canonical strategy.</span></li>
-      <li><span class="surface-tag">Video</span><span>First Remotion explainer video scripted.</span></li>
-    </ul>
+    <div class="deliverables">
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Content Shipped</div>
+        <ul>
+          <li><span class="surface-tag">LinkedIn</span><span>5 posts published — one per persona angle. Founder voice + employee advocacy seeded.</span></li>
+          <li><span class="surface-tag">Blog</span><span>First long-form draft in review — the category-defining piece, schema-tagged for Article + FAQ.</span></li>
+          <li><span class="surface-tag">Landing</span><span>v1 page live for the top-priority persona. Core Web Vitals green. CRO baseline set.</span></li>
+          <li><span class="surface-tag">Playbook</span><span>Outline drafted — TradePass-anchored: fraud and KYB for distributors.</span></li>
+          <li><span class="surface-tag">Video</span><span>First Remotion explainer video scripted.</span></li>
+        </ul>
+      </div>
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Paid Stack Queued</div>
+        <ul>
+          <li><span class="surface-tag">Paid</span><span>LinkedIn campaign drafted: TOFU <em>(Top of Funnel)</em> Single Image + MOFU <em>(Middle of Funnel)</em> Document Ad + BOFU <em>(Bottom of Funnel)</em> Lead Gen Form. Awaiting your approval.</span></li>
+          <li><span class="surface-tag">Lead Gen</span><span>LinkedIn Lead Gen Form built — pre-filled fields, post-submit redirect, CRM sync.</span></li>
+          <li><span class="surface-tag">CAPI</span><span>Conversion API live. Offline + form-fill conversions piping into LinkedIn for closed-loop reporting.</span></li>
+        </ul>
+      </div>
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Decisions Made</div>
+        <ul>
+          <li><span class="surface-tag">CRO</span><span>Microsoft Clarity installed — heatmaps + session recordings on every landing page.</span></li>
+          <li><span class="surface-tag">Domain</span><span>Memo: <strong>vailent.ai</strong> vs <strong>vailent.com</strong> recommendation, with redirect + canonical strategy.</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1202,19 +1254,34 @@ h3.headline-sm {
       <div class="day-num">Day 14</div>
       <div class="day-tag">Velocity check. Paid is live. First MQLs in the CRM.</div>
     </div>
-    <ul class="deliverables">
-      <li><span class="surface-tag">LinkedIn</span><span>Daily cadence locked — ≥10 posts shipped. Organic engagement baseline established per persona.</span></li>
-      <li><span class="surface-tag">Blog</span><span>2 posts published; blog section mounted on vailent.ai with category taxonomy + RSS.</span></li>
-      <li><span class="surface-tag">Landing</span><span>2 pages live. A/B variants running on hero + primary CTA — statistical significance gates set.</span></li>
-      <li><span class="surface-tag">Paid</span><span>LinkedIn campaign live and spending. TOFU + Lead Gen Forms in market. CPM / CPC / CPL benchmarks captured.</span></li>
-      <li><span class="surface-tag">MQL</span><span>First MQLs <em>(Marketing Qualified Leads)</em> hitting the CRM via Lead Gen Forms + landing-page submits.</span></li>
-      <li><span class="surface-tag">Attribution</span><span>First-touch attribution model confirmed in GA4 + CRM. UTM hygiene audited end-to-end.</span></li>
-      <li><span class="surface-tag">Audience</span><span>Persona retargeting audiences populated — LinkedIn Matched Audiences, GA4 audiences, lookalike seeds queued.</span></li>
-      <li><span class="surface-tag">Playbook</span><span>v1 published and gated. Lead capture wired end-to-end. Drip nurture sequence drafted.</span></li>
-      <li><span class="surface-tag">API</span><span>LinkedIn API access approved. Programmatic posting + ads reporting unlocked.</span></li>
-      <li><span class="surface-tag">Video</span><span>First Remotion video published. Native LinkedIn upload + YouTube mirror.</span></li>
-      <li><span class="surface-tag">Interview</span><span>First persona interview recorded.</span></li>
-    </ul>
+    <div class="deliverables">
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Content + Channels</div>
+        <ul>
+          <li><span class="surface-tag">LinkedIn</span><span>Daily cadence locked — ≥10 posts shipped. Organic engagement baseline established per persona.</span></li>
+          <li><span class="surface-tag">Blog</span><span>2 posts published; blog section mounted with category taxonomy + RSS.</span></li>
+          <li><span class="surface-tag">Landing</span><span>2 pages live. A/B variants running on hero + primary CTA — significance gates set.</span></li>
+          <li><span class="surface-tag">Paid</span><span>LinkedIn campaign live and spending. TOFU + Lead Gen Forms in market. CPM / CPC / CPL benchmarks captured.</span></li>
+        </ul>
+      </div>
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Funnel + Measurement</div>
+        <ul>
+          <li><span class="surface-tag">MQL</span><span>First MQLs <em>(Marketing Qualified Leads)</em> hitting the CRM via Lead Gen Forms + landing-page submits.</span></li>
+          <li><span class="surface-tag">Attribution</span><span>First-touch attribution model confirmed in GA4 + CRM. UTM hygiene audited end-to-end.</span></li>
+          <li><span class="surface-tag">Audience</span><span>Persona retargeting audiences populated — LinkedIn Matched Audiences, GA4 audiences, lookalike seeds queued.</span></li>
+          <li><span class="surface-tag">API</span><span>LinkedIn API access approved. Programmatic posting + ads reporting unlocked.</span></li>
+        </ul>
+      </div>
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Production Output</div>
+        <ul>
+          <li><span class="surface-tag">Playbook</span><span>v1 published and gated. Lead capture wired end-to-end. Drip nurture sequence drafted.</span></li>
+          <li><span class="surface-tag">Video</span><span>First Remotion video published. Native LinkedIn upload + YouTube mirror.</span></li>
+          <li><span class="surface-tag">Interview</span><span>First persona interview recorded.</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1228,19 +1295,34 @@ h3.headline-sm {
       <div class="day-num">Day 30</div>
       <div class="day-tag">Mature funnels. Pipeline visible. Category leadership in market.</div>
     </div>
-    <ul class="deliverables">
-      <li><span class="surface-tag">LinkedIn</span><span>Daily cadence in steady state — ≥30 posts shipped, engagement curve trending up per persona.</span></li>
-      <li><span class="surface-tag">Blog</span><span>4+ posts published, indexed, ranking on long-tail distributor queries. Topic cluster strategy live.</span></li>
-      <li><span class="surface-tag">Landing</span><span>3 pages live across top-3 personas. CRO loop running: Clarity → A/B test → next variant.</span></li>
-      <li><span class="surface-tag">Paid</span><span>LinkedIn campaigns optimized. CPL benchmarks set. Lookalike audiences seeded from MQL list. Frequency caps tuned.</span></li>
-      <li><span class="surface-tag">Funnels</span><span>Mature persona-targeted funnels: post → landing → playbook → nurture → meeting.</span></li>
-      <li><span class="surface-tag">Anthology</span><span>Category-defining anthology piece in production — competitive analysis adapted public.</span></li>
-      <li><span class="surface-tag">KB</span><span>PDF library v1 live — top-10 industry references for distributor decision committees.</span></li>
-      <li><span class="surface-tag">Meetings</span><span>Booked discovery meetings via outbound + inbound. (Booked, not signed — honest count.)</span></li>
-      <li><span class="surface-tag">Case Study</span><span>Scaffolding ready for the first 2–3 closes.</span></li>
-      <li><span class="surface-tag">Latency</span><span>Industry news → published content under 24 hours.</span></li>
-      <li><span class="surface-tag">Attribution</span><span>First-touch + multi-touch attribution reporting in the dashboard. Pipeline $ attached.</span></li>
-    </ul>
+    <div class="deliverables">
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Channels at Velocity</div>
+        <ul>
+          <li><span class="surface-tag">LinkedIn</span><span>Daily cadence in steady state — ≥30 posts shipped, engagement curve trending up per persona.</span></li>
+          <li><span class="surface-tag">Blog</span><span>4+ posts published, indexed, ranking on long-tail distributor queries. Topic cluster strategy live.</span></li>
+          <li><span class="surface-tag">Landing</span><span>3 pages live across top-3 personas. CRO loop running: Clarity → A/B test → next variant.</span></li>
+        </ul>
+      </div>
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Funnel + Pipeline</div>
+        <ul>
+          <li><span class="surface-tag">Paid</span><span>LinkedIn campaigns optimized. CPL benchmarks set. Lookalike audiences seeded from MQL list. Frequency caps tuned.</span></li>
+          <li><span class="surface-tag">Funnels</span><span>Mature persona-targeted funnels: post → landing → playbook → nurture → meeting.</span></li>
+          <li><span class="surface-tag">Meetings</span><span>Booked discovery meetings via outbound + inbound. (Booked, not signed — honest count.)</span></li>
+          <li><span class="surface-tag">Case Study</span><span>Scaffolding ready for the first 2–3 closes.</span></li>
+        </ul>
+      </div>
+      <div class="deliverable-group">
+        <div class="deliverable-group-title">Engine in Steady State</div>
+        <ul>
+          <li><span class="surface-tag">Anthology</span><span>Competitive analysis V3 live as the public companion doc — refreshed quarterly.</span></li>
+          <li><span class="surface-tag">KB</span><span>PDF library v1 live — top-10 industry references for distributor decision committees.</span></li>
+          <li><span class="surface-tag">Latency</span><span>Industry news → published content under 24 hours.</span></li>
+          <li><span class="surface-tag">Attribution</span><span>First-touch + multi-touch attribution reporting in the dashboard. Pipeline $ attached.</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1438,7 +1520,7 @@ h3.headline-sm {
     <li>KB verification kickoff — ticket open, owners assigned.</li>
   </ul>
   <p class="kicker">If the shape works, the next conversation is the commercial one.</p>
-  <div class="close-link">Companion analysis · <a href="https://quinnpochekailo.github.io/vailent-marketing-samples/analysis/">Competitive Marketing Analysis V3</a></div>
+  <div class="close-link">Companion · <a href="https://quinnpochekailo.github.io/vailent-marketing-samples/analysis/">Competitive Marketing Analysis V3</a></div>
 </section>
 
 </div>
