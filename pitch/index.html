@@ -639,7 +639,38 @@ h3.headline-sm {
   white-space: nowrap;
 }
 .close-recap-what {
-  opacity: 0.85;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.close-recap-numbers {
+  color: var(--fg);
+  font-weight: 500;
+}
+.close-recap-numbers strong {
+  color: var(--lemon);
+  font-weight: 700;
+}
+.close-recap-numbers em {
+  font-style: italic;
+  background-image: linear-gradient(90deg, var(--lemon) 0%, var(--coral) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.close-recap-story {
+  font-size: 0.88em;
+  font-style: italic;
+  opacity: 0.6;
+}
+.close-subhead {
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  color: var(--fg-60);
+  margin-top: 12px;
+  margin-bottom: clamp(20px, 3vh, 32px);
+  max-width: 70ch;
+  line-height: 1.4;
 }
 @media (max-width: 900px) {
   .close-recap li { grid-template-columns: 1fr; gap: 4px; }
@@ -1526,13 +1557,38 @@ h3.headline-sm {
   </svg>
   <span class="slide-num">15 / 15</span>
   <div class="eyebrow" style="color: var(--gold); margin-top: clamp(40px, 6vh, 64px);">Next Steps</div>
-  <p class="close-statement">Here's what ships <em>Monday.</em></p>
+  <p class="close-statement">Here's the <em>conversion story.</em></p>
+  <p class="close-subhead">From first ad click to onboarded customer. Anchored to Ramp Up tier — Conservative scales ~40% lower, Aggressive ~75% higher. Numbers derived from 2026 LinkedIn + Manufacturing benchmarks.</p>
   <ul class="close-recap">
-    <li><span class="close-recap-when">Monday you approve</span><span class="close-recap-what">Stack live. Paid campaigns staged. KB verification kicked off.</span></li>
-    <li><span class="close-recap-when">Day 14</span><span class="close-recap-what">Paid is live. First MQLs in the CRM. Daily LinkedIn cadence locked.</span></li>
-    <li><span class="close-recap-when">Day 30</span><span class="close-recap-what">3 landing pages across top personas. Mature funnels. First CPL benchmarks set.</span></li>
-    <li><span class="close-recap-when">Day 90</span><span class="close-recap-what">Decision gates fire (or hold). Pipeline visible. First closed-opp scaffolding.</span></li>
-    <li><span class="close-recap-when">Month 6+</span><span class="close-recap-what">Category position established. Compounding flywheel running.</span></li>
+    <li>
+      <span class="close-recap-when">Day 30 · Validating</span>
+      <span class="close-recap-what">
+        <span class="close-recap-numbers"><strong>~50</strong> first inquiries · <strong>5-10</strong> first meetings</span>
+        <span class="close-recap-story">Vailent-specific CPL benchmark set. Decide if the creative is working.</span>
+      </span>
+    </li>
+    <li>
+      <span class="close-recap-when">Day 90 · Decision Point</span>
+      <span class="close-recap-what">
+        <span class="close-recap-numbers"><strong>~300-500</strong> cumulative inquiries · <strong>~40-70</strong> meetings · <strong>~15-25</strong> opportunities</span>
+        <span class="close-recap-story">Decision gates fire. Ramp Up to higher spend confirmed.</span>
+      </span>
+    </li>
+    <li>
+      <span class="close-recap-when">Month 6 · First Wins</span>
+      <span class="close-recap-what">
+        <span class="close-recap-numbers"><strong>~1,500</strong> inquiries · <strong>~200</strong> meetings · <strong>~50-80</strong> opportunities · first <strong>5-10 closed</strong></span>
+        <span class="close-recap-story">Sales cycle catches up. First case studies in flight.</span>
+      </span>
+    </li>
+    <li>
+      <span class="close-recap-when">Month 12 · Steady Flow</span>
+      <span class="close-recap-what">
+        <span class="close-recap-numbers"><strong>~3,500</strong> inquiries · <strong>~450</strong> meetings · <strong>~150</strong> opportunities · <strong>~20-50 onboarded customers</strong></span>
+        <span class="close-recap-numbers">Y1 pipeline value: <em>[your ACV]</em> × 20-50 deals</span>
+        <span class="close-recap-story">Category position established. Pipeline self-sustaining.</span>
+      </span>
+    </li>
   </ul>
   <p class="kicker">If the shape works, the next conversation is the commercial one.</p>
   <div class="close-link">Companion · <a href="https://quinnpochekailo.github.io/vailent-marketing-samples/analysis/">Competitive Marketing Analysis V3</a></div>
